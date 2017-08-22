@@ -165,9 +165,29 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Migrations\201708220827553_InitialMigration.cs" />
+    <Compile Include="Migrations\201708220827553_InitialMigration.Designer.cs">
+      <DependentUpon>201708220827553_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708220837368_AddedSomePropertiesToApplicationUser.cs" />
+    <Compile Include="Migrations\201708220837368_AddedSomePropertiesToApplicationUser.Designer.cs">
+      <DependentUpon>201708220837368_AddedSomePropertiesToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708220851194_AddedSomePropertiesToApplicationUser2.cs" />
+    <Compile Include="Migrations\201708220851194_AddedSomePropertiesToApplicationUser2.Designer.cs">
+      <DependentUpon>201708220851194_AddedSomePropertiesToApplicationUser2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708220855061_AddedSomePropertiesToApplicationUser3.cs" />
+    <Compile Include="Migrations\201708220855061_AddedSomePropertiesToApplicationUser3.Designer.cs">
+      <DependentUpon>201708220855061_AddedSomePropertiesToApplicationUser3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\ViewModel\AccountViewModels.cs" />
+    <Compile Include="Models\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModel\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -177,6 +197,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CustomBootstrapTheme.css" />
+    <Content Include="Content\Images\17264975_10155133460262052_2001033222423227303_n.jpg" />
+    <Content Include="Content\Images\17361761_751336645016974_8169877945821952807_n.jpg" />
+    <Content Include="Content\Images\17434698_1253350521427330_8013427058473538164_o.jpg" />
+    <Content Include="Content\Images\18194874_1855076051426270_801358040015136779_n.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -228,7 +252,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -241,6 +264,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -248,6 +272,20 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708220827553_InitialMigration.resx">
+      <DependentUpon>201708220827553_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708220837368_AddedSomePropertiesToApplicationUser.resx">
+      <DependentUpon>201708220837368_AddedSomePropertiesToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708220851194_AddedSomePropertiesToApplicationUser2.resx">
+      <DependentUpon>201708220851194_AddedSomePropertiesToApplicationUser2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708220855061_AddedSomePropertiesToApplicationUser3.resx">
+      <DependentUpon>201708220855061_AddedSomePropertiesToApplicationUser3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

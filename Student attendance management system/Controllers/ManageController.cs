@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Student_attendance_management_system.Models;
+using Student_attendance_management_system.Models.ViewModel;
 
 namespace Student_attendance_management_system.Controllers
 {

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace Student_attendance_management_system.Models
+namespace Student_attendance_management_system.Models.ViewModel
 {
     public class IndexViewModel
     {

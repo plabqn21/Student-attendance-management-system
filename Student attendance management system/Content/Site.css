@@ -1,6 +1,12 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+   
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -12,9 +18,6 @@
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
-    white-space: normal;
-}
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
@@ -23,9 +26,22 @@ textarea {
     max-width: 280px;
 }
 
-/*customize*/
 
-.navbar-inverse {
-    background-color: #345f8e;
-    border-color: transparent;
+
+/*custom*/
+
+
+
+.navbar-brand {
+    float: left;
+    padding: 15px 15px;
+    font-size: 24px;
+    line-height: 20px;
+    height: 50px;
+}
+
+.form-control {
+    
+
+    font-size: 18px
 }

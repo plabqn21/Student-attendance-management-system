@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Student_attendance_management_system.Models;
+using Student_attendance_management_system.Models.ViewModel;
 
 namespace Student_attendance_management_system.Controllers
 {
@@ -151,7 +152,21 @@ namespace Student_attendance_management_system.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                   
+                    Name = model.Name,
+                    DateOfBirth = model.DateOfBirth,
+                    Degree = model.Degree,
+                    Position = model.Position,
+                    Mobile = model.Mobile,
+                    Email = model.Email,
+                    ProfilePicture = model.ProfilePicture,
+                    SecrectCode = model.SecrectCode
+
+                
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
