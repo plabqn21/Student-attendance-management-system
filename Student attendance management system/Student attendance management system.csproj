@@ -162,6 +162,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SecrectCodesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,9 +182,22 @@
     <Compile Include="Migrations\201708220855061_AddedSomePropertiesToApplicationUser3.Designer.cs">
       <DependentUpon>201708220855061_AddedSomePropertiesToApplicationUser3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708280629513_AddSecrectCodeTable.cs" />
+    <Compile Include="Migrations\201708280629513_AddSecrectCodeTable.Designer.cs">
+      <DependentUpon>201708280629513_AddSecrectCodeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708280638499_AddSerialToSecrectCodeTable.cs" />
+    <Compile Include="Migrations\201708280638499_AddSerialToSecrectCodeTable.Designer.cs">
+      <DependentUpon>201708280638499_AddSerialToSecrectCodeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708280641547_DropSerialToSecrectCodeTable.cs" />
+    <Compile Include="Migrations\201708280641547_DropSerialToSecrectCodeTable.Designer.cs">
+      <DependentUpon>201708280641547_DropSerialToSecrectCodeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\SecrectCode.cs" />
     <Compile Include="Models\ViewModel\AccountViewModels.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\ManageViewModels.cs" />
@@ -265,6 +279,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\SecrectCodes\Create.cshtml" />
+    <Content Include="Views\SecrectCodes\Delete.cshtml" />
+    <Content Include="Views\SecrectCodes\Details.cshtml" />
+    <Content Include="Views\SecrectCodes\Edit.cshtml" />
+    <Content Include="Views\SecrectCodes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -285,6 +304,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708220855061_AddedSomePropertiesToApplicationUser3.resx">
       <DependentUpon>201708220855061_AddedSomePropertiesToApplicationUser3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708280629513_AddSecrectCodeTable.resx">
+      <DependentUpon>201708280629513_AddSecrectCodeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708280638499_AddSerialToSecrectCodeTable.resx">
+      <DependentUpon>201708280638499_AddSerialToSecrectCodeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708280641547_DropSerialToSecrectCodeTable.resx">
+      <DependentUpon>201708280641547_DropSerialToSecrectCodeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

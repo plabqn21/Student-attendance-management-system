@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Student_attendance_management_system.Models.SecrectCode>
+
+@{
+    ViewBag.Title = "Secrect Keys List";
+}
+
+<h2>Secrect Keys List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null,new{@class="btn btn-primary"})
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecrectKey)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecrectKey)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" }) 
+           
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
