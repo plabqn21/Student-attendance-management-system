@@ -70,6 +70,7 @@
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.SecrectCode, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.SecrectCode, "", new { @class = "text-danger" })
+          <p class="text-danger"> @ViewBag.Message<p>
 
 
         </div>
