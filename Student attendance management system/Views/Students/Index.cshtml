@@ -1,0 +1,64 @@
+﻿@using System.Web.UI.WebControls
+@model IEnumerable<Student_attendance_management_system.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br/><br/><br/>
+<p>
+    @Html.ActionLink("Add New Student", "Create",null,new{@class="btn btn-primary"})<br/><br/>
+   
+</p>
+
+
+@using (Html.BeginForm("Index", "Students"))
+{
+
+    <label class="label label-default">Search Student : </label><br/>
+    @Html.TextBox("StudentId", null, new { @class = "form-control",PlaceHolder="ex:B120304021/2012-13)" })<br/>
+    <button type="submit" class="btn btn-info">Search</button>
+}
+<br/><br/>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Session)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Semester)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Session)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Semester)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id },new{@class="btn btn-info"}) 
+            
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

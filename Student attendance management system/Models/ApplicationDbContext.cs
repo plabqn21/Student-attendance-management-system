@@ -8,6 +8,7 @@ namespace Student_attendance_management_system.Models
 
 
 
+        public DbSet<Student> Students { get; set; }
         public DbSet<SecrectCode> SecrectCodes { get; set; }
         public DbSet<Course> Courses { get; set; }
 
