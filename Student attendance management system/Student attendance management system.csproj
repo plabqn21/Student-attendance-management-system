@@ -160,6 +160,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -207,6 +208,10 @@
     <Compile Include="Migrations\201708290624109_AddStudentTable.cs" />
     <Compile Include="Migrations\201708290624109_AddStudentTable.Designer.cs">
       <DependentUpon>201708290624109_AddStudentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708291209034_SeedUser.cs" />
+    <Compile Include="Migrations\201708291209034_SeedUser.Designer.cs">
+      <DependentUpon>201708291209034_SeedUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -309,6 +314,7 @@
     <Content Include="Views\Students\Details.cshtml" />
     <Content Include="Views\Students\Edit.cshtml" />
     <Content Include="Views\Students\Index.cshtml" />
+    <Content Include="Views\Admin\AdminHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -347,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708290624109_AddStudentTable.resx">
       <DependentUpon>201708290624109_AddStudentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708291209034_SeedUser.resx">
+      <DependentUpon>201708291209034_SeedUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
