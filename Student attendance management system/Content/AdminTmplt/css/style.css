@@ -1452,9 +1452,9 @@ section#tables  p {
 	padding: 15px!important;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-	font-size: 0.9em;
-	color: #999;
-	border-top: none !important;
+	    font-size: 1.2em;
+    color: #0c0c0c;
+    border-top: none !important;
 }
 .tab-content > .active {
 	display: block;
@@ -3100,7 +3100,8 @@ div#graph1, div#graph4, div#graph5, div#graph6, div#graph7, div#graph8, div#grap
     margin: 1em 0;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-    font-size: 0.75em;
+       font-size: .74em;
+   
 }
 #drop {
     padding: 50px 16px;

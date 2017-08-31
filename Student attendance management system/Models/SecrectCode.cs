@@ -12,6 +12,7 @@ namespace Student_attendance_management_system.Models
         [Required]
         [MaxLength(10, ErrorMessage = "Maximum 10 Character")]
         [MinLength(4, ErrorMessage = "Minimum 4 Character")]
+        [Display(Name = "Secrect Key")]
         public string SecrectKey { get; set; }
 
 

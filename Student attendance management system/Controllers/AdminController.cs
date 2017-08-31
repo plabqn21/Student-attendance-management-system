@@ -7,6 +7,35 @@ namespace Student_attendance_management_system.Controllers
         // GET: Admin
         public ActionResult AdminHome()
         {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             return View();
         }
     }
