@@ -38,9 +38,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <header class="header fixed-top clearfix">
             <!--logo start-->
             <div class="brand">
-                <a href="index.html" class="logo">
-                    ADMIN
-                </a>
+                
+                
+                
+                <a class="logo"onclick="location.href='@Url.Action("AdminHome","Admin")'"> ADMIN HOME</a>
                 <div class="sidebar-toggle-box">
                     <div class="fa fa-bars"></div>
                 </div>
@@ -68,16 +69,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!-- sidebar menu start-->
                 <div class="leftside-navigation">
                     <ul class="sidebar-menu" id="nav-accordion">
-                        <li>
-                            <a class="active" href="index.html">
-                                <i class="fa fa-dashboard"></i>
-                                <span>Dashboard</span>
+                        <li class="sub-menu">
+                            <a href="javascript:">
+                                <i class="fa fa-book"></i>
+                                <span>Course</span>
                             </a>
+                            
+                            <ul class="sub">
+                                <li>@Html.ActionLink("Add New", "Create", "Courses")</li>
+                                <li>@Html.ActionLink("View All", "Index", "Courses")</li>
+                            </ul>
                         </li>
 
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-dashboard"></i>
                                 <span>Secrect Code</span>
                             </a>
                             <ul class="sub">
@@ -282,10 +288,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+       
     </div>
     
     @Scripts.Render("~/bundles/jquery")

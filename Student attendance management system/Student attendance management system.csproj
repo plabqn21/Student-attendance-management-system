@@ -241,7 +241,7 @@
     <Content Include="Content\AdminTmplt\images\1.png" />
     <Content Include="Content\AdminTmplt\images\2.png" />
     <Content Include="Content\AdminTmplt\images\3.png" />
-    <Content Include="Content\AdminTmplt\images\bg.jpg" />
+    <Content Include="Content\AdminTmplt\images\bgc.jpg" />
     <Content Include="Content\AdminTmplt\images\close.png" />
     <Content Include="Content\AdminTmplt\images\g1.jpg" />
     <Content Include="Content\AdminTmplt\images\g2.jpg" />
