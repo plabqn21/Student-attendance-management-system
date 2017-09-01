@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Student_attendance_management_system.Models;
 using Student_attendance_management_system.Models.ViewModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -152,7 +153,7 @@ namespace Student_attendance_management_system.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase ProfilePicture)
         {
 
 
@@ -166,8 +167,28 @@ namespace Student_attendance_management_system.Controllers
             }
 
 
+
+
             if (ModelState.IsValid)
             {
+
+
+                if (ProfilePicture.ContentLength > 0)
+                {
+
+                    // code for saving the image file to a physical location.
+                    var fileName = Path.GetFileName(ProfilePicture.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/ProfilePicture"), fileName);
+                    ProfilePicture.SaveAs(path);
+                    // prepare a relative path to be stored in the database and used to display later on.
+                    var dbpath = Url.Content(Path.Combine("~/Content/ProfilePicture", fileName));
+                    model.ProfilePicture = dbpath;
+                }
+
+
+
+
+
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
