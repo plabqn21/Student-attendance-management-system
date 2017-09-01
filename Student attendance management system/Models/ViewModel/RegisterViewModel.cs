@@ -6,9 +6,9 @@ namespace Student_attendance_management_system.Models.ViewModel
     public class RegisterViewModel
     {
 
+        [Key]
+        public int Id { get; set; }
 
-
-        
 
 
         [Required]

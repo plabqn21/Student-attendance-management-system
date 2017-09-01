@@ -74,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <i class="fa fa-book"></i>
                                 <span>Course</span>
                             </a>
-                            
+
                             <ul class="sub">
                                 <li>@Html.ActionLink("Add New", "Create", "Courses")</li>
                                 <li>@Html.ActionLink("View All", "Index", "Courses")</li>
@@ -92,10 +92,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </li>
                         <li>
-                            <a href="fontawesome.html">
-                                <i class="fa fa-bullhorn"></i>
-                                <span>Font awesome </span>
+
+                            <a onclick="location.href='@Url.Action("ViewAllTeachers", "Admin")'">
+                                <i class="fa fa-list"></i>
+                                <span>All Teachers </span>
                             </a>
+
+
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
@@ -295,7 +298,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
-</html>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
