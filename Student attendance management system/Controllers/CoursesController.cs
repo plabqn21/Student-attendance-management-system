@@ -13,7 +13,8 @@ namespace Student_attendance_management_system.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            var courses = db.Courses.Include(c => c.Semester);
+            return View(courses.ToList());
         }
 
         // GET: Courses/Details/5
@@ -23,7 +24,7 @@ namespace Student_attendance_management_system.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            var course = db.Courses.SingleOrDefault(m => m.Id == id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -34,6 +35,7 @@ namespace Student_attendance_management_system.Controllers
         // GET: Courses/Create
         public ActionResult Create()
         {
+            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name");
             return View();
         }
 
@@ -42,7 +44,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CourseCode,Name,Semester")] Course course)
+        public ActionResult Create([Bind(Include = "Id,CourseCode,Name,SemesterId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -51,22 +53,23 @@ namespace Student_attendance_management_system.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", course.SemesterId);
             return View(course);
         }
 
         // GET: Courses/Edit/5
-        public ActionResult Edit(int? Id)
+        public ActionResult Edit(int? id)
         {
-            if (Id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Course course = db.Courses.SingleOrDefault(m => m.Id == Id);
+            Course course = db.Courses.SingleOrDefault(m => m.Id == id);
             if (course == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", course.SemesterId);
             return View(course);
         }
 
@@ -75,7 +78,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CourseCode,Name,Semester")] Course course)
+        public ActionResult Edit([Bind(Include = "Id,CourseCode,Name,SemesterId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -83,6 +86,7 @@ namespace Student_attendance_management_system.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", course.SemesterId);
             return View(course);
         }
 

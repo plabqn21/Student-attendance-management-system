@@ -5,8 +5,10 @@ namespace Student_attendance_management_system.Models
 {
     public class Course
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(Order = 1)]
+        
+             [Key]
+        [Column(Order  =1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Key]
         [Column(Order = 2)]
@@ -16,7 +18,12 @@ namespace Student_attendance_management_system.Models
         [Required]
         [Display(Name = "Course Name")]
         public string Name { get; set; }
+
+        public Semester Semester { get; set; }
         [Required]
-        public string Semester { get; set; }
+        [ForeignKey("Semester")]
+        public int SemesterId { get; set; }
+       
+      
     }
 }

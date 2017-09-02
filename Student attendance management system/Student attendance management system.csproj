@@ -213,11 +213,36 @@
     <Compile Include="Migrations\201708291209034_SeedUser.Designer.cs">
       <DependentUpon>201708291209034_SeedUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709021559320_SemesterTable.cs" />
+    <Compile Include="Migrations\201709021559320_SemesterTable.Designer.cs">
+      <DependentUpon>201709021559320_SemesterTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709021613304_AddSemesterTable.cs" />
+    <Compile Include="Migrations\201709021613304_AddSemesterTable.Designer.cs">
+      <DependentUpon>201709021613304_AddSemesterTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709021629535_AddSemesterTable1.cs" />
+    <Compile Include="Migrations\201709021629535_AddSemesterTable1.Designer.cs">
+      <DependentUpon>201709021629535_AddSemesterTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709021630304_AddForeignkeyToCourseTable.cs" />
+    <Compile Include="Migrations\201709021630304_AddForeignkeyToCourseTable.Designer.cs">
+      <DependentUpon>201709021630304_AddForeignkeyToCourseTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709021702486_AddKeyToCourse.cs" />
+    <Compile Include="Migrations\201709021702486_AddKeyToCourse.Designer.cs">
+      <DependentUpon>201709021702486_AddKeyToCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709021705449_AddKeyToCourse1.cs" />
+    <Compile Include="Migrations\201709021705449_AddKeyToCourse1.Designer.cs">
+      <DependentUpon>201709021705449_AddKeyToCourse1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\SecrectCode.cs" />
+    <Compile Include="Models\Semester.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\ViewModel\AccountViewModels.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
@@ -363,10 +388,6 @@
     <Content Include="Views\SecrectCodes\Details.cshtml" />
     <Content Include="Views\SecrectCodes\Edit.cshtml" />
     <Content Include="Views\SecrectCodes\Index.cshtml" />
-    <Content Include="Views\Courses\Create.cshtml" />
-    <Content Include="Views\Courses\Delete.cshtml" />
-    <Content Include="Views\Courses\Edit.cshtml" />
-    <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Students\Create.cshtml" />
     <Content Include="Views\Students\Delete.cshtml" />
     <Content Include="Views\Students\Details.cshtml" />
@@ -377,6 +398,11 @@
     <Content Include="Views\Shared\_LoginPartial2.cshtml" />
     <Content Include="Views\SecrectCodes\Create.cshtml" />
     <Content Include="Views\Admin\ViewAllTeachers.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -420,6 +446,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708291209034_SeedUser.resx">
       <DependentUpon>201708291209034_SeedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021559320_SemesterTable.resx">
+      <DependentUpon>201709021559320_SemesterTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021613304_AddSemesterTable.resx">
+      <DependentUpon>201709021613304_AddSemesterTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021629535_AddSemesterTable1.resx">
+      <DependentUpon>201709021629535_AddSemesterTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021630304_AddForeignkeyToCourseTable.resx">
+      <DependentUpon>201709021630304_AddForeignkeyToCourseTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021702486_AddKeyToCourse.resx">
+      <DependentUpon>201709021702486_AddKeyToCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021705449_AddKeyToCourse1.resx">
+      <DependentUpon>201709021705449_AddKeyToCourse1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

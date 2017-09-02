@@ -5,12 +5,12 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 <div style="margin-left: 140px">
-    <h2>Students</h2>
+    <h2>All Courses</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Create New", "Create", null,new { @class = "btn btn-primary" })
     </p>
-    <table class="table table-condensed">
+    <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.CourseCode)
@@ -19,8 +19,9 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Semester)
+                @Html.DisplayNameFor(model => model.Semester.Name)
             </th>
+           
             <th></th>
         </tr>
 
@@ -30,16 +31,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CourseCode)
                 </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Semester)
+                    @Html.DisplayFor(modelItem => item.Semester.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { Id = item.Id }, new { @class = "btn btn-info" })
-
-                    @Html.ActionLink("Delete", "Delete", new { Id = item.Id }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" }) 
+                   
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }
