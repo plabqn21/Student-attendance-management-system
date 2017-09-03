@@ -10,8 +10,7 @@ namespace Student_attendance_management_system.Models
         [Column(Order  =1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Key]
-        [Column(Order = 2)]
+       
         [Display(Name = "Course Code")]
         [Required]
         public string CourseCode { get; set; }

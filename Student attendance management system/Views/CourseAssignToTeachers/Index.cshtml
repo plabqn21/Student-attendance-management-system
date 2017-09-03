@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Student_attendance_management_system.Models.CourseAssignToTeacher>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Semester.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Semester.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CourseAssignToTeacherId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CourseAssignToTeacherId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CourseAssignToTeacherId })
+        </td>
+    </tr>
+}
+
+</table>
