@@ -31,6 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="~/Content/AdminTmplt/js/jquery2.0.3.min.js"></script>
     <script src="~/Content/AdminTmplt/js/raphael-min.js"></script>
     <script src="~/Content/AdminTmplt/js/morris.js"></script>
+    <meta name="description" content="The description of my page" />
 </head>
 <body >
     <section id="container">
@@ -77,7 +78,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             <ul class="sub">
                                 <li>@Html.ActionLink("Add New", "Create", "Courses")</li>
-                                <li>@Html.ActionLink("View All", "Index", "Courses")</li>
+                                <li>@Html.ActionLink("View All Courses", "Index", "Courses")</li>
+                                <li>@Html.ActionLink("Assign Course To Teacher", "Create", "CourseAssignToTeachers")</li>
+                                <li>@Html.ActionLink("View all Courses Assignment", "Index", "CourseAssignToTeachers")</li>
                             </ul>
                         </li>
 

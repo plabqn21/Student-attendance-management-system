@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Student_attendance_management_system.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Student_attendance_management_system.Models;
 
 namespace Student_attendance_management_system.Controllers
 {
@@ -40,7 +36,7 @@ namespace Student_attendance_management_system.Controllers
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name");
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "CourseCode");
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name");
             return View();
         }
@@ -60,7 +56,7 @@ namespace Student_attendance_management_system.Controllers
             }
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name", courseAssignToTeacher.UserId);
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "CourseCode", courseAssignToTeacher.CourseId);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", courseAssignToTeacher.CourseId);
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", courseAssignToTeacher.SemesterId);
             return View(courseAssignToTeacher);
         }
@@ -78,7 +74,7 @@ namespace Student_attendance_management_system.Controllers
                 return HttpNotFound();
             }
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name", courseAssignToTeacher.UserId);
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "CourseCode", courseAssignToTeacher.CourseId);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", courseAssignToTeacher.CourseId);
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", courseAssignToTeacher.SemesterId);
             return View(courseAssignToTeacher);
         }
@@ -97,7 +93,7 @@ namespace Student_attendance_management_system.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name", courseAssignToTeacher.UserId);
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "CourseCode", courseAssignToTeacher.CourseId);
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", courseAssignToTeacher.CourseId);
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", courseAssignToTeacher.SemesterId);
             return View(courseAssignToTeacher);
         }

@@ -13,6 +13,7 @@ namespace Student_attendance_management_system.Models
 
         [Required]
         [ForeignKey("Semester")]
+       
         public int SemesterId { get; set; }
         
         public Semester Semester { get; set; }
@@ -20,16 +21,18 @@ namespace Student_attendance_management_system.Models
 
 
         [ForeignKey("Course")]
+       
         public int CourseId { get; set; }
 
 
 
-
+       
 
         public Course Course { get; set; }
         [Required]
 
         [ForeignKey("ApplicationUser")]
+        
         
         public string UserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }

@@ -19,7 +19,7 @@ namespace Student_attendance_management_system.Models
            
             [Required]
             [MaxLength(244)]
-
+              [Display(Name = "Teacher Name")]
             public String Name { get; set; }
 
             [Required]
