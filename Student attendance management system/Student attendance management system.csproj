@@ -336,6 +336,8 @@
     <Content Include="Content\Images\17361761_751336645016974_8169877945821952807_n.jpg" />
     <Content Include="Content\Images\17434698_1253350521427330_8013427058473538164_o.jpg" />
     <Content Include="Content\Images\18194874_1855076051426270_801358040015136779_n.jpg" />
+    <Content Include="Content\W3CSS\w3CssPlugIn.css" />
+    <Content Include="Content\W3CSS\w3CssPlugInFont.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

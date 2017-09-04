@@ -7,6 +7,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <link href="~/Content/W3CSS/w3CssPlugIn.css" rel="stylesheet" />
+
+    <link href="~/Content/W3CSS/w3CssPlugInFont.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -22,7 +25,28 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="w3-dropdown-hover">
+
+
+
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Students<b class="caret"></b></a>
+
+
+                        <div class="w3-dropdown-content w3-border">
+
+
+                            @Html.ActionLink("Add Student", "Create", "Students")
+                            @Html.ActionLink("All Students", "Index", "Students")
+                           
+
+                           
+
+
+                        </div>
+
+
+
+                    </li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
