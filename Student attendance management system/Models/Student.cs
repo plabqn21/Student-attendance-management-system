@@ -16,12 +16,16 @@ namespace Student_attendance_management_system.Models
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(40)]
-        public string Session { get; set; }
+        [ForeignKey("Sessiontbl")]
+
+        public int SessiontblId { get; set; }
+        public Sessiontbl Sessiontbl { get; set; }
 
         [Required]
-        [MaxLength(40)]
-        public string Semester { get; set; }
+        [ForeignKey("Semester")]
+        public int SemesterId { get; set; }
+
+        public Semester Semester { get; set; }
 
     }
 }

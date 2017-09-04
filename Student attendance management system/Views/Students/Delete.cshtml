@@ -13,6 +13,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Semester.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Semester.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sessiontbl.Session)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sessiontbl.Session)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.StudentId)
         </dt>
 
@@ -28,30 +44,14 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Session)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Session)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Semester)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Semester)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> 
-           
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>

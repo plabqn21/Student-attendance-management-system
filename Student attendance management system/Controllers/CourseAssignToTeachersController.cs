@@ -48,6 +48,12 @@ namespace Student_attendance_management_system.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CourseAssignToTeacherId,SemesterId,CourseId,UserId")] CourseAssignToTeacher courseAssignToTeacher)
         {
+
+
+
+           
+
+
             if (ModelState.IsValid)
             {
                 db.CourseAssignToTeachers.Add(courseAssignToTeacher);

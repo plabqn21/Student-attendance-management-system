@@ -14,9 +14,9 @@ namespace Student_attendance_management_system.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            var students = db.Students.Include(s => s.Semester).Include(s => s.Sessiontbl);
+            return View(students.ToList());
         }
-
 
 
         [HttpPost]
@@ -24,7 +24,7 @@ namespace Student_attendance_management_system.Controllers
         {
             if (StudentId != null)
             {
-                var student = db.Students.Where(x => x.StudentId == StudentId || x.Session == StudentId);
+                var student = db.Students.Include(s => s.Semester).Include(s => s.Sessiontbl).Where(x => x.StudentId == StudentId || x.Sessiontbl.Session == StudentId).ToList();
 
                 return View(student);
             }
@@ -32,9 +32,6 @@ namespace Student_attendance_management_system.Controllers
 
             return View(db.Students.ToList());
         }
-
-
-
 
 
         // GET: Students/Details/5
@@ -55,6 +52,8 @@ namespace Student_attendance_management_system.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
+            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name");
+            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session");
             return View();
         }
 
@@ -63,7 +62,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,StudentId,Name,Session,Semester")] Student student)
+        public ActionResult Create([Bind(Include = "Id,StudentId,Name,SessiontblId,SemesterId")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -72,6 +71,8 @@ namespace Student_attendance_management_system.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", student.SemesterId);
+            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", student.SessiontblId);
             return View(student);
         }
 
@@ -87,6 +88,8 @@ namespace Student_attendance_management_system.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", student.SemesterId);
+            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", student.SessiontblId);
             return View(student);
         }
 
@@ -95,7 +98,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,StudentId,Name,Session,Semester")] Student student)
+        public ActionResult Edit([Bind(Include = "Id,StudentId,Name,SessiontblId,SemesterId")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -103,6 +106,8 @@ namespace Student_attendance_management_system.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", student.SemesterId);
+            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", student.SessiontblId);
             return View(student);
         }
 
