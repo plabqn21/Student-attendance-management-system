@@ -10,9 +10,9 @@ namespace Student_attendance_management_system.Migrations
             DropForeignKey("dbo.Attendances", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Attendances", "CourseId", "dbo.Courses");
             DropForeignKey("dbo.Attendances", "SemesterId", "dbo.Semesters");
-            DropForeignKey("dbo.Attendances", "SessiontblId", "dbo.Sessiontbls");
+            DropForeignKey("dbo.Attendances", "Batch", "dbo.Sessiontbls");
             DropForeignKey("dbo.Attendances", "StudentId", "dbo.Students");
-            DropIndex("dbo.Attendances", new[] { "SessiontblId" });
+            DropIndex("dbo.Attendances", new[] { "Batch" });
             DropIndex("dbo.Attendances", new[] { "SemesterId" });
             DropIndex("dbo.Attendances", new[] { "UserId" });
             DropIndex("dbo.Attendances", new[] { "CourseId" });
@@ -55,9 +55,9 @@ namespace Student_attendance_management_system.Migrations
             CreateIndex("dbo.Attendances", "CourseId");
             CreateIndex("dbo.Attendances", "UserId");
             CreateIndex("dbo.Attendances", "SemesterId");
-            CreateIndex("dbo.Attendances", "SessiontblId");
+            CreateIndex("dbo.Attendances", "Batch");
             AddForeignKey("dbo.Attendances", "StudentId", "dbo.Students", "Id", cascadeDelete: true);
-            AddForeignKey("dbo.Attendances", "SessiontblId", "dbo.Sessiontbls", "Id", cascadeDelete: true);
+            AddForeignKey("dbo.Attendances", "Batch", "dbo.Sessiontbls", "Id", cascadeDelete: true);
             AddForeignKey("dbo.Attendances", "SemesterId", "dbo.Semesters", "Id", cascadeDelete: true);
             AddForeignKey("dbo.Attendances", "CourseId", "dbo.Courses", "Id", cascadeDelete: true);
             AddForeignKey("dbo.Attendances", "UserId", "dbo.AspNetUsers", "Id", cascadeDelete: true);

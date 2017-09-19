@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Student_attendance_management_system.Models.ViewModel
 {
@@ -11,7 +7,7 @@ namespace Student_attendance_management_system.Models.ViewModel
     {
 
 
-      
+
         public int Id { get; set; }
 
         [Required]
@@ -20,28 +16,30 @@ namespace Student_attendance_management_system.Models.ViewModel
 
 
         [Required]
-        [ForeignKey("Sessiontbl")]
-        public int SessiontblId { get; set; }
 
-        public Sessiontbl Sessiontbl { get; set; }
+        public string Batch { get; set; }
+
+
 
 
 
         [Required]
         [ForeignKey("Semester")]
+        [Display(Name = "Semester")]
         public int SemesterId { get; set; }
 
         public Semester Semester { get; set; }
 
 
-       
+
 
         [Required]
         [ForeignKey("Course")]
+        [Display(Name = "Course")]
         public int CourseId { get; set; }
 
         public Course Course { get; set; }
 
-       
+
     }
 }

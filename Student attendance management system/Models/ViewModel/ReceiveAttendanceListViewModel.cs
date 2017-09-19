@@ -18,7 +18,7 @@ namespace Student_attendance_management_system.Models.ViewModel
         public string UserId { get; set; }
 
 
-        public int SessiontblId { get; set; }
+        public string Batch { get; set; }
         public int SemesterId { get; set; }
 
         public string Date { get; set; }

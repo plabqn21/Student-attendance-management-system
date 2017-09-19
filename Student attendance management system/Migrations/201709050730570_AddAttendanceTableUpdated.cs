@@ -40,7 +40,7 @@ namespace Student_attendance_management_system.Migrations
         {
             DropForeignKey("dbo.Attendances", "StudentId", "dbo.Students");
             DropForeignKey("dbo.Attendances", "StatusId", "dbo.Status");
-            DropForeignKey("dbo.Attendances", "SessiontblId", "dbo.Sessiontbls");
+            DropForeignKey("dbo.Attendances", "Batch", "dbo.Sessiontbls");
             DropForeignKey("dbo.Attendances", "SemesterId", "dbo.Semesters");
             DropForeignKey("dbo.Attendances", "CourseId", "dbo.Courses");
             DropForeignKey("dbo.Attendances", "UserId", "dbo.AspNetUsers");
@@ -49,7 +49,7 @@ namespace Student_attendance_management_system.Migrations
             DropIndex("dbo.Attendances", new[] { "CourseId" });
             DropIndex("dbo.Attendances", new[] { "UserId" });
             DropIndex("dbo.Attendances", new[] { "SemesterId" });
-            DropIndex("dbo.Attendances", new[] { "SessiontblId" });
+            DropIndex("dbo.Attendances", new[] { "Batch" });
             DropTable("dbo.Attendances");
         }
     }

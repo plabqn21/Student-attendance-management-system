@@ -27,5 +27,8 @@ namespace Student_attendance_management_system.Models
 
         public Semester Semester { get; set; }
 
+        [Required]
+        public string Batch { get; set; }
+
     }
 }

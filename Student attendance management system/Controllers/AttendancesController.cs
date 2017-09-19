@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Student_attendance_management_system.Models;
 using Student_attendance_management_system.Models.ViewModel;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -17,24 +17,13 @@ namespace Student_attendance_management_system.Controllers
         // GET: Attendances
         public ActionResult Index()
         {
-            var attendances = db.Attendances.Include(a => a.ApplicationUser).Include(a => a.Course).Include(a => a.Semester).Include(a => a.Sessiontbl).Include(a => a.Status).Include(a => a.Student);
+            var attendances = db.Attendances.Include(a => a.ApplicationUser).Include(a => a.Course).Include(a => a.Semester).Include(a => a.Status).Include(a => a.Student);
             return View(attendances.ToList());
         }
 
         // GET: Attendances/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Attendance attendance = db.Attendances.Find(id);
-            if (attendance == null)
-            {
-                return HttpNotFound();
-            }
-            return View(attendance);
-        }
+
+
 
         // GET: Attendances/Create
         public ActionResult Create()
@@ -74,7 +63,7 @@ namespace Student_attendance_management_system.Controllers
             //ViewBag.UserId = new SelectList(db.Users, "Id", "Name", attendanceViewModel1.UserId);
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", attendanceViewModel1.CourseId);
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", attendanceViewModel1.SemesterId);
-            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendanceViewModel1.SessiontblId);
+            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendanceViewModel1.Batch);
             //ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", attendance.StatusId);
             //ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId", attendance.StudentId);
             return View(attendanceViewModel1);
@@ -91,19 +80,19 @@ namespace Student_attendance_management_system.Controllers
 
             var course = db.Courses.Where(x => x.Id == receiveData.CourseId);
             var sesester = db.Semesters.Where(x => x.Id == receiveData.SemesterId);
-            var sessions = db.Sessions.Where(x => x.Id == receiveData.SessiontblId);
+
             var userId = User.Identity.GetUserId();
 
             ViewBag.CourseId = new SelectList(course, "Id", "Name");
             ViewBag.SemesterId = new SelectList(sesester, "Id", "Name");
-            ViewBag.SessiontblId = new SelectList(sessions, "Id", "Session");
             ViewBag.UserId = (string)userId;
 
             ViewBag.Date = receiveData.Date;
+            ViewBag.Batch = receiveData.Batch;
 
             var allStudents =
                 db.Students.Where(
-                    x => x.SemesterId == receiveData.SemesterId && x.SessiontblId == receiveData.SessiontblId).ToList();
+                    x => x.SemesterId == receiveData.SemesterId && x.Batch == receiveData.Batch).ToList();
 
             var finalAttendanceViewModel = new FinalAttendanceViewModel();
             finalAttendanceViewModel.Students = allStudents;
@@ -118,61 +107,62 @@ namespace Student_attendance_management_system.Controllers
 
 
         [HttpPost]
-        public ActionResult FinalAttendence(FormCollection formCollection )
+        public ActionResult FinalAttendence(FormCollection formCollection)
         {
 
 
-            List<ReceiveAttendanceListViewModel> receive=new List<ReceiveAttendanceListViewModel>();
+            List<ReceiveAttendanceListViewModel> receive = new List<ReceiveAttendanceListViewModel>();
 
 
             var StudentId = formCollection["StudentId"].Split(',').ToArray();
-                 var Name =formCollection["Name"].Split(',').ToArray();
-                 var CourseId =formCollection["CourseId"].Split(',').ToArray();
-                 var UserId = formCollection["UserId"].Split(',').ToArray();
-                 var SessiontblId = formCollection["SessiontblId"].Split(',').ToArray();
-                 var SemesterId = formCollection["SemesterId"].Split(',').ToArray();
-                 var Date = formCollection["Date"].Split(',').ToArray();
-                 var StatusId = formCollection["StatusId"].Split(',').ToArray();
+            var Name = formCollection["Name"].Split(',').ToArray();
+            var CourseId = formCollection["CourseId"].Split(',').ToArray();
+            var UserId = formCollection["UserId"].Split(',').ToArray();
+            var Batch = formCollection["Batch"].Split(',').ToArray();
+            var SemesterId = formCollection["SemesterId"].Split(',').ToArray();
+            var Date = formCollection["Date"].Split(',').ToArray();
+            var StatusId = formCollection["StatusId"].Split(',').ToArray();
 
 
 
-                 for (var i = 0; i < StudentId.Length; i++)
-                 {
-                     receive.Add(new ReceiveAttendanceListViewModel()
-                     {   StudentId=StudentId[i].ToString(),
-                         
-                         CourseId=Convert.ToInt32(CourseId[i]),
+            for (var i = 0; i < StudentId.Length; i++)
+            {
+                receive.Add(new ReceiveAttendanceListViewModel()
+                {
+                    StudentId = StudentId[i].ToString(),
 
-                         UserId=UserId[i].ToString(),
-                         SessiontblId=Convert.ToInt32(SessiontblId[i]),
-                         SemesterId=Convert.ToInt32(SemesterId[i]),
-                         Date=Date[i].ToString(),
-                         StatusId=Convert.ToInt32(StatusId[i])
-                       
-                     });
-                 }
-            List<Attendance> listAttendance=new List<Attendance>();
+                    CourseId = Convert.ToInt32(CourseId[i]),
+
+                    UserId = UserId[i].ToString(),
+                    Batch = Batch[i],
+                    SemesterId = Convert.ToInt32(SemesterId[i]),
+                    Date = Date[i].ToString(),
+                    StatusId = Convert.ToInt32(StatusId[i])
+
+                });
+            }
+            List<Attendance> listAttendance = new List<Attendance>();
             foreach (var attendance in receive)
             {
 
                 listAttendance.Add(new Attendance()
                 {
-                 Date   = attendance.Date,
-                 SessiontblId = attendance.SessiontblId,
-                 SemesterId = attendance.SemesterId,
-                 UserId = attendance.UserId,
-                 CourseId = attendance.CourseId,
-                 StudentId =db.Students.SingleOrDefault(x=>x.StudentId==attendance.StudentId).Id,
-                 StatusId = attendance.StatusId
+                    Date = attendance.Date,
+                    Batch = attendance.Batch,
+                    SemesterId = attendance.SemesterId,
+                    UserId = attendance.UserId,
+                    CourseId = attendance.CourseId,
+                    StudentId = db.Students.SingleOrDefault(x => x.StudentId == attendance.StudentId).Id,
+                    StatusId = attendance.StatusId
 
 
                 }
-                    
-                    
+
+
                     );
 
 
-               
+
 
             }
 
@@ -188,7 +178,7 @@ namespace Student_attendance_management_system.Controllers
 
 
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
         // GET: Attendances/Edit/5
         public ActionResult Edit(int? id)
@@ -205,7 +195,7 @@ namespace Student_attendance_management_system.Controllers
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name", attendance.UserId);
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "CourseCode", attendance.CourseId);
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", attendance.SemesterId);
-            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendance.SessiontblId);
+            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendance.Batch);
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", attendance.StatusId);
             ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId", attendance.StudentId);
             return View(attendance);
@@ -216,7 +206,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Date,SessiontblId,SemesterId,UserId,CourseId,StudentId,StatusId")] Attendance attendance)
+        public ActionResult Edit([Bind(Include = "Id,Date,Batch,SemesterId,UserId,CourseId,StudentId,StatusId")] Attendance attendance)
         {
             if (ModelState.IsValid)
             {
@@ -227,7 +217,7 @@ namespace Student_attendance_management_system.Controllers
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name", attendance.UserId);
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "CourseCode", attendance.CourseId);
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", attendance.SemesterId);
-            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendance.SessiontblId);
+            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendance.Batch);
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", attendance.StatusId);
             ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId", attendance.StudentId);
             return View(attendance);

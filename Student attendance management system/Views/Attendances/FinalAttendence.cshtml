@@ -23,7 +23,7 @@
             </th>
 
             <th>
-                @Html.Label("Session")
+                @Html.Label("Batch")
 
 
             </th>
@@ -75,7 +75,7 @@
 
 
                 <td>
-                    @Html.DropDownList("SessiontblId")
+                    @Html.TextBox("Batch", (string)ViewBag.Batch)
                 </td>
                 <td>
                     @Html.DropDownList("SemesterId")

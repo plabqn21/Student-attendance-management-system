@@ -7,18 +7,18 @@ namespace Student_attendance_management_system.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Students", "SessiontblId", c => c.Int(nullable: false));
-            CreateIndex("dbo.Students", "SessiontblId");
-            AddForeignKey("dbo.Students", "SessiontblId", "dbo.Sessiontbls", "Id", cascadeDelete: true);
+            AddColumn("dbo.Students", "Batch", c => c.Int(nullable: false));
+            CreateIndex("dbo.Students", "Batch");
+            AddForeignKey("dbo.Students", "Batch", "dbo.Sessiontbls", "Id", cascadeDelete: true);
             DropColumn("dbo.Students", "Session");
         }
         
         public override void Down()
         {
             AddColumn("dbo.Students", "Session", c => c.String(nullable: false, maxLength: 40));
-            DropForeignKey("dbo.Students", "SessiontblId", "dbo.Sessiontbls");
-            DropIndex("dbo.Students", new[] { "SessiontblId" });
-            DropColumn("dbo.Students", "SessiontblId");
+            DropForeignKey("dbo.Students", "Batch", "dbo.Sessiontbls");
+            DropIndex("dbo.Students", new[] { "Batch" });
+            DropColumn("dbo.Students", "Batch");
         }
     }
 }

@@ -15,7 +15,7 @@
 {
 
     <label class="label label-default">Search Student : </label><br />
-    @Html.TextBox("StudentId", null, new { @class = "form-control", PlaceHolder = "ex:B120304021/BSC2012-13)" })<br />
+    @Html.TextBox("StudentId", null, new { @class = "form-control", PlaceHolder = "ex:B120304021/4th)" })<br />
     <button type="submit" class="btn btn-info">Search</button>
 }
 <br /><br />
@@ -33,6 +33,8 @@
         
         <th>
             @Html.DisplayNameFor(model => model.Sessiontbl.Session)
+        </th> <th>
+            @Html.DisplayNameFor(model => model.Batch)
         </th>
         
         <th>
@@ -54,6 +56,9 @@
        
         <td>
             @Html.DisplayFor(modelItem => item.Sessiontbl.Session)
+        </td>  
+        <td>
+            @Html.DisplayFor(modelItem => item.Batch)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Semester.Name)

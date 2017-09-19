@@ -24,7 +24,7 @@ namespace Student_attendance_management_system.Controllers
         {
             if (StudentId != null)
             {
-                var student = db.Students.Include(s => s.Semester).Include(s => s.Sessiontbl).Where(x => x.StudentId == StudentId || x.Sessiontbl.Session == StudentId).ToList();
+                var student = db.Students.Include(s => s.Semester).Include(s => s.Sessiontbl).Where(x => x.StudentId == StudentId || x.Batch == StudentId).ToList();
 
                 return View(student);
             }
@@ -62,7 +62,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,StudentId,Name,SessiontblId,SemesterId")] Student student)
+        public ActionResult Create([Bind(Include = "Id,StudentId,Name,Batch,SemesterId,SessiontblId")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,StudentId,Name,SessiontblId,SemesterId")] Student student)
+        public ActionResult Edit([Bind(Include = "Id,StudentId,Name,Batch,SessiontblId,SemesterId")] Student student)
         {
             if (ModelState.IsValid)
             {
