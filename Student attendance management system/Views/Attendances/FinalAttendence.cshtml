@@ -1,0 +1,113 @@
+﻿@model Student_attendance_management_system.Models.ViewModel.FinalAttendanceViewModel
+
+@using (Html.BeginForm("FinalAttendence", "Attendances", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <br/>
+    <br/>
+    <br/>
+
+
+
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.Label("Student Id")
+            </th>
+
+
+            <th>
+                @Html.Label("CourseCode")
+
+
+            </th>
+
+            <th>
+                @Html.Label("Session")
+
+
+            </th>
+            <th>
+                @Html.Label("Semester")
+
+
+            </th>
+            <th>
+                @Html.Label("Date")
+
+
+            </th>
+
+            <th>
+                @Html.Label("Status")
+
+
+            </th>
+
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+
+                <td>
+                    @Html.TextBox("StudentId", (string)item.StudentId)
+                    
+
+                </td>
+
+
+                @Html.Hidden("Name", (string)item.Name)
+
+
+
+                <td>
+                    @Html.DropDownList("CourseId")
+                </td>
+
+
+                @Html.Hidden("UserId", (string)ViewBag.UserId)
+
+
+
+
+                <td>
+                    @Html.DropDownList("SessiontblId")
+                </td>
+                <td>
+                    @Html.DropDownList("SemesterId")
+                </td>
+
+
+                <td>
+                    @Html.TextBox("Date", (string)ViewBag.Date)
+
+                </td>
+
+                <td>
+                    @Html.DropDownList("StatusId", new List<SelectListItem>
+                    {
+                        new SelectListItem {Text = "Present", Value = "1"},
+                        new SelectListItem {Text = "Absent", Value = "2"},
+                        new SelectListItem {Text = "On Leave", Value = "3"}
+                    })
+                </td>
+
+
+
+            </tr>
+        }
+
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+
+

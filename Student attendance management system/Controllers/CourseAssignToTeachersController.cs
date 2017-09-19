@@ -1,4 +1,5 @@
-﻿using Student_attendance_management_system.Models;
+﻿using System.Collections.Generic;
+using Student_attendance_management_system.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -36,10 +37,23 @@ namespace Student_attendance_management_system.Controllers
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name");
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
+
+           
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name");
+
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
+
             return View();
         }
+
+
+
+
+
+
+
+
+
 
         // POST: CourseAssignToTeachers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

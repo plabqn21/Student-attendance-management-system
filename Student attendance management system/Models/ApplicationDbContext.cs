@@ -6,8 +6,8 @@ namespace Student_attendance_management_system.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
-
-
+        public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<Status> Statuses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Sessiontbl> Sessions { get; set; }
         public DbSet<SecrectCode> SecrectCodes { get; set; }
@@ -26,6 +26,7 @@ namespace Student_attendance_management_system.Models
         {
             return new ApplicationDbContext();
         }
+
 
 
     }
