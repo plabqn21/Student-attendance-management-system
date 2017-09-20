@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Student_attendance_management_system
 {
@@ -9,7 +8,9 @@ namespace Student_attendance_management_system
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/moment.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -21,11 +22,16 @@ namespace Student_attendance_management_system
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bootstrap-datetimepicker.js"
+
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/CustomBootstrapTheme.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+
+                      "~/Content/bootstrap-datetimepicker.css"));
         }
     }
 }

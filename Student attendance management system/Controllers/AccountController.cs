@@ -155,8 +155,22 @@ namespace Student_attendance_management_system.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase ProfilePicture)
         {
+            var alreadyUsedEmail = db.Users.SingleOrDefault(x => x.Email == model.Email);
+            if (alreadyUsedEmail != null)
+            {
+                @ViewBag.EmailUsed = "Email was used by other";
+                return View();
 
+            }
 
+            var alreadyUsedSecrectCode = db.Users.SingleOrDefault(x => x.SecrectCode == model.SecrectCode);
+           
+            if (alreadyUsedSecrectCode != null)
+            {
+                @ViewBag.Used = "This Secrect Key was used Please contact with Admin";
+                return View();
+
+            }
             var dbSecrectCode = db.SecrectCodes.SingleOrDefault(x => x.SecrectKey == model.SecrectCode);
 
             if (dbSecrectCode == null)
