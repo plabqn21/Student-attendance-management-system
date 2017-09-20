@@ -48,6 +48,15 @@ namespace Student_attendance_management_system.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,SecrectKey")] SecrectCode secrectCode)
         {
+
+            var matchSecrectCode = db.SecrectCodes.SingleOrDefault(x => x.SecrectKey == secrectCode.SecrectKey);
+            if (matchSecrectCode != null)
+            {
+                @ViewBag.Message = "This key was already added try another";
+                return View();
+            }
+
+
             if (ModelState.IsValid)
             {
                 db.SecrectCodes.Add(secrectCode);
@@ -80,6 +89,16 @@ namespace Student_attendance_management_system.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,SecrectKey")] SecrectCode secrectCode)
         {
+
+
+
+            var matchSecrectCode = db.SecrectCodes.SingleOrDefault(x => x.SecrectKey == secrectCode.SecrectKey);
+            if (matchSecrectCode != null)
+            {
+                @ViewBag.Message = "This key was already added try another";
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(secrectCode).State = EntityState.Modified;

@@ -46,6 +46,17 @@ namespace Student_attendance_management_system.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CourseCode,Name,SemesterId")] Course course)
         {
+
+
+            var assignedCourse = db.Courses.SingleOrDefault(x => x.CourseCode == course.CourseCode);
+
+            if (assignedCourse != null)
+            {
+                @ViewBag.Message = "Course Code was used. Try edit option from (View All Courses) Under Menu";
+                ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", course.SemesterId);
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
                 db.Courses.Add(course);

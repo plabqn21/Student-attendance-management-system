@@ -21,8 +21,10 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.SecrectKey, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.SecrectKey, "", new { @class = "text-danger" })
+                    <p style="color: red">@ViewBag.Message</p>
                 </div>
-            </div>
+                </div>
+               
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
