@@ -161,6 +161,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AttendanceReportController.cs" />
     <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\CourseAssignToTeachersController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
@@ -299,7 +300,9 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\ViewModel\AccountViewModels.cs" />
+    <Compile Include="Models\ViewModel\AttendanceReportViewModel.cs" />
     <Compile Include="Models\ViewModel\AttendanceViewModel1.cs" />
+    <Compile Include="Models\ViewModel\FinalAttendanceReport.cs" />
     <Compile Include="Models\ViewModel\FinalAttendanceViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\ManageViewModels.cs" />
@@ -559,6 +562,8 @@
     <Content Include="Views\Attendances\Index.cshtml" />
     <Content Include="Views\Shared\CoursesOptionPartial.cshtml" />
     <Content Include="Views\Attendances\FinalAttendence.cshtml" />
+    <Content Include="Views\AttendanceReport\SelectProperties.cshtml" />
+    <Content Include="Views\AttendanceReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -54,7 +54,7 @@
             <tr>
 
                 <td>
-                    @Html.TextBox("StudentId", (string)item.StudentId)
+                    @Html.TextBox("StudentId", (string)item.StudentId,new { @readonly="readonly" })
                     
 
                 </td>
@@ -75,7 +75,7 @@
 
 
                 <td>
-                    @Html.TextBox("Batch", (string)ViewBag.Batch)
+                    @Html.TextBox("Batch", (string)ViewBag.Batch, new { @readonly = "readonly" })
                 </td>
                 <td>
                     @Html.DropDownList("SemesterId")
@@ -83,7 +83,7 @@
 
 
                 <td>
-                    @Html.TextBox("Date", (string)ViewBag.Date)
+                    @Html.TextBox("Date", (string)ViewBag.Date, new { @readonly = "readonly" })
 
                 </td>
 
@@ -100,13 +100,20 @@
 
             </tr>
         }
-
+       
     </table>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
+    
+    <table>
+        
+        <tr>
+            <div class="form-group" align="right">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-lg btn-primary" />
+                </div>
+            </div>
+        </tr>
+    </table>
+   
 }
 
 

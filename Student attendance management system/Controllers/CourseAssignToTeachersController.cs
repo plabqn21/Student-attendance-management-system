@@ -63,10 +63,20 @@ namespace Student_attendance_management_system.Controllers
         public ActionResult Create([Bind(Include = "CourseAssignToTeacherId,SemesterId,CourseId,UserId")] CourseAssignToTeacher courseAssignToTeacher)
         {
 
+            var alreadyAssignedCourse =
+                db.CourseAssignToTeachers
+                .SingleOrDefault(x => x.CourseId == courseAssignToTeacher.CourseId &&
+                    x.UserId==courseAssignToTeacher.UserId);
 
 
-           
-
+            if (alreadyAssignedCourse != null)
+            {
+                @ViewBag.Message = "Already Assigned";
+                ViewBag.UserId = new SelectList(db.Users, "Id", "Name", courseAssignToTeacher.UserId);
+                ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", courseAssignToTeacher.CourseId);
+                ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", courseAssignToTeacher.SemesterId);
+                return View(courseAssignToTeacher);
+            }
 
             if (ModelState.IsValid)
             {
@@ -106,6 +116,24 @@ namespace Student_attendance_management_system.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CourseAssignToTeacherId,SemesterId,CourseId,UserId")] CourseAssignToTeacher courseAssignToTeacher)
         {
+
+
+
+            var alreadyAssignedCourse =
+                db.CourseAssignToTeachers
+                .SingleOrDefault(x => x.CourseId == courseAssignToTeacher.CourseId &&
+                    x.UserId == courseAssignToTeacher.UserId);
+
+
+            if (alreadyAssignedCourse != null)
+            {
+                @ViewBag.Message = "Already Assigned";
+                ViewBag.UserId = new SelectList(db.Users, "Id", "Name", courseAssignToTeacher.UserId);
+                ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", courseAssignToTeacher.CourseId);
+                ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", courseAssignToTeacher.SemesterId);
+                return View(courseAssignToTeacher);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(courseAssignToTeacher).State = EntityState.Modified;
