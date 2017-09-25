@@ -141,29 +141,26 @@ namespace Student_attendance_management_system.Controllers
 
                 });
             }
-            List<Attendance> listAttendance = new List<Attendance>();
+            var listAttendance = new List<Attendance>();
             foreach (var attendance in receive)
             {
-
-                listAttendance.Add(new Attendance()
-                {
-                    Date = attendance.Date,
-                    Batch = attendance.Batch,
-                    SemesterId = attendance.SemesterId,
-                    UserId = attendance.UserId,
-                    CourseId = attendance.CourseId,
-                    StudentId = db.Students.SingleOrDefault(x => x.StudentId == attendance.StudentId).Id,
-                    StatusId = attendance.StatusId
-
-
-                }
+                var singleOrDefault = db.Students.SingleOrDefault(x => x.StudentId == attendance.StudentId && x.SemesterId == attendance.SemesterId);
+                if (singleOrDefault != null)
+                    listAttendance.Add(new Attendance()
+                    {
+                        Date = attendance.Date,
+                        Batch = attendance.Batch,
+                        SemesterId = attendance.SemesterId,
+                        UserId = attendance.UserId,
+                        CourseId = attendance.CourseId,
+                        StudentId = singleOrDefault.Id,
+                        StatusId = attendance.StatusId
 
 
-                    );
+                    }
 
 
-
-
+                        );
             }
 
 

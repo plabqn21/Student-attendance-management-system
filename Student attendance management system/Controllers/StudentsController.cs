@@ -64,6 +64,25 @@ namespace Student_attendance_management_system.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,StudentId,Name,Batch,SemesterId,SessiontblId")] Student student)
         {
+
+            var alreadyAddedStudent = db.Students.SingleOrDefault(x => x
+                                                                       .SemesterId == student.SemesterId &&
+
+                                                                       x.StudentId == student.StudentId
+
+
+
+                );
+
+
+            if (alreadyAddedStudent != null)
+            {
+                ViewBag.Message = "Already Added";
+                ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", student.SemesterId);
+                ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", student.SessiontblId);
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
                 db.Students.Add(student);
