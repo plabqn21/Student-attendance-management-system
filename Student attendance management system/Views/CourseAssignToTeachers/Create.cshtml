@@ -28,7 +28,7 @@
             <div class="form-group">
                 @Html.Label( "Course", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("CourseId", null,"Select Course", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m=>m.CourseId,new SelectList(""),"Select Course", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
                     <p style="color: red">@ViewBag.Message</p>
                 </div>
@@ -63,3 +63,30 @@
 }
 <script src="~/Scripts/jquery-3.1.1.js"></script>
 <script src="~/Scripts/respond.js"></script>
+<script>
+    
+
+    $(document).ready(function () {
+
+        $("#SemesterId").change(function () {
+
+            var SemesterId = $(this).val();
+
+            $.ajax({
+
+                type: "Post",
+                url: "/Attendances/GetAllCourses?SemesterId=" + SemesterId,
+                contentType: "html",
+                success: function (response) {
+
+                    $("#CourseId").empty();
+                    $("#CourseId").append(response);
+
+                }
+
+
+
+            });
+        });
+    });
+</script>

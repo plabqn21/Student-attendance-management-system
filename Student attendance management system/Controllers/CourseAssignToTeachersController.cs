@@ -41,7 +41,7 @@ namespace Student_attendance_management_system.Controllers
            
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name");
 
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
+           // ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
 
             return View();
         }
@@ -49,7 +49,14 @@ namespace Student_attendance_management_system.Controllers
 
 
 
+        public ActionResult GetAllCourses(int SemesterId)
+        {
 
+            var CourseList = db.Courses.Where(x => x.SemesterId == SemesterId).ToList();
+
+            ViewBag.SendIdToPartial = new SelectList(CourseList, "Id", "Name");
+            return PartialView("CascadingOptionPartial");
+        }
 
 
 

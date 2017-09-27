@@ -72,8 +72,11 @@ namespace Student_attendance_management_system.Controllers
 
         public ActionResult GetAllCourses(int SemesterId)
         {
-            
-            var CourseList = db.Courses.Where(x => x.SemesterId == SemesterId).ToList();
+            var currentUser = User.Identity.GetUserId();
+            var assignedCourse = db.CourseAssignToTeachers.Where(x => x.UserId == currentUser);
+
+
+            var CourseList = assignedCourse.Select(x => x.Course).Where(x => x.SemesterId == SemesterId).ToList();
 
             ViewBag.SendIdToPartial = new SelectList(CourseList, "Id", "Name");
             return PartialView("CascadingOptionPartial");
