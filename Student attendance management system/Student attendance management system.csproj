@@ -561,7 +561,7 @@
     <Content Include="Views\Attendances\Delete.cshtml" />
     <Content Include="Views\Attendances\Edit.cshtml" />
     <Content Include="Views\Attendances\Index.cshtml" />
-    <Content Include="Views\Shared\CoursesOptionPartial.cshtml" />
+    <Content Include="Views\Shared\CascadingOptionPartial.cshtml" />
     <Content Include="Views\Attendances\FinalAttendence.cshtml" />
     <Content Include="Views\AttendanceReport\SelectProperties.cshtml" />
     <Content Include="Views\AttendanceReport\Index.cshtml" />

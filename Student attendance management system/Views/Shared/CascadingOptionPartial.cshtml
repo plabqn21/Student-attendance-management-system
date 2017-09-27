@@ -1,0 +1,16 @@
+﻿
+
+<option value="">--Select--</option>
+@if (ViewBag.SendIdToPartial != null)
+{
+
+
+    foreach (var item in ViewBag.SendIdToPartial)
+    {
+        
+        
+        
+        <option value="@item.Value">@item.Text</option>
+    }
+    
+}

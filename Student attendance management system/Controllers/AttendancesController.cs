@@ -36,7 +36,7 @@ namespace Student_attendance_management_system.Controllers
             var courses = assignCourses.Select(item => item.Course).ToList();
 
             //ViewBag.UserId = new SelectList(db.Users, "Id", "Name");
-            ViewBag.CourseId = new SelectList(courses, "Id", "Name");
+            // ViewBag.CourseId = new SelectList(courses, "Id", "Name");
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name");
             ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session");
             //ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name");
@@ -68,6 +68,19 @@ namespace Student_attendance_management_system.Controllers
             //ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId", attendance.StudentId);
             return View(attendanceViewModel1);
         }
+
+
+        public ActionResult GetAllCourses(int SemesterId)
+        {
+            
+            var CourseList = db.Courses.Where(x => x.SemesterId == SemesterId).ToList();
+
+            ViewBag.SendIdToPartial = new SelectList(CourseList, "Id", "Name");
+            return PartialView("CascadingOptionPartial");
+        }
+
+
+
 
 
 
