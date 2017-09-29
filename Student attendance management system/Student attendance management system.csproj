@@ -308,6 +308,7 @@
     <Compile Include="Models\ViewModel\ManageViewModels.cs" />
     <Compile Include="Models\ViewModel\ReceiveAttendanceListViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
+    <Compile Include="Models\ViewModel\SingleDayAttendanceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -565,6 +566,8 @@
     <Content Include="Views\Attendances\FinalAttendence.cshtml" />
     <Content Include="Views\AttendanceReport\SelectProperties.cshtml" />
     <Content Include="Views\AttendanceReport\Index.cshtml" />
+    <Content Include="Views\AttendanceReport\DetailsAttendanceForADay.cshtml" />
+    <Content Include="Views\AttendanceReport\SingleDayAttendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

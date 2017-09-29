@@ -12,6 +12,19 @@ namespace Student_attendance_management_system.Controllers
         // GET: AttendanceReport
 
         ApplicationDbContext db = new ApplicationDbContext();
+
+
+        public ActionResult GetAllCourses(int SemesterId)
+        {
+            var currentUser = User.Identity.GetUserId();
+            var assignedCourse = db.CourseAssignToTeachers.Where(x => x.UserId == currentUser);
+
+
+            var CourseList = assignedCourse.Select(x => x.Course).Where(x => x.SemesterId == SemesterId).ToList();
+
+            ViewBag.SendIdToPartial = new SelectList(CourseList, "Id", "Name");
+            return PartialView("CascadingOptionPartial");
+        }
         [HttpGet]
         public ActionResult SelectProperties()
         {
@@ -21,7 +34,7 @@ namespace Student_attendance_management_system.Controllers
             var courseAssignToTeachers = db.CourseAssignToTeachers.Where(x => x.UserId == currentUser);
             var assignedCoursesToTeacher = courseAssignToTeachers.Select(x => x.Course).ToList();
             @ViewBag.SemesterId = new SelectList(semesters, "Id", "Name");
-            @ViewBag.CourseId = new SelectList(assignedCoursesToTeacher, "Id", "Name");
+            //@ViewBag.CourseId = new SelectList(assignedCoursesToTeacher, "Id", "Name");
             return View();
         }
         [HttpPost]
@@ -32,10 +45,11 @@ namespace Student_attendance_management_system.Controllers
             return RedirectToAction("Index", "AttendanceReport", attendanceReportViewModel);
 
         }
+        [HttpGet]
         public ActionResult Index(AttendanceReportViewModel attendanceReportViewModel)
         {
 
-            int  totalPresent = 0, totalAbsent = 0, totalLeave = 0;
+            int totalPresent = 0, totalAbsent = 0, totalLeave = 0;
 
             double totalClass = 0.00;
             var userId = User.Identity.GetUserId();
@@ -86,17 +100,18 @@ namespace Student_attendance_management_system.Controllers
                     }
 
                     totalClass = (double)totalPresent + (double)totalAbsent + (double)totalLeave;
-                    double parcent = (totalPresent/totalClass)*100.00;
+                    double parcent = (totalPresent / totalClass) * 100.00;
                     double mark;
                     if (parcent < 60)
                     {
-                        mark = 0.00;}
-                    else if (parcent >= 60 && parcent<70)
+                        mark = 0.00;
+                    }
+                    else if (parcent >= 60 && parcent < 70)
                     {
                         mark = 6.00;
                     }
-                  
-                    else if (parcent >= 70 && parcent<80)
+
+                    else if (parcent >= 70 && parcent < 80)
                     {
                         mark = 7.00;
                     }
@@ -104,11 +119,11 @@ namespace Student_attendance_management_system.Controllers
                     {
                         mark = 8.00;
                     }
-                    else 
+                    else
                     {
                         mark = 10.00;
                     }
-                   
+
 
                     var singleOrDefault = db.Students.SingleOrDefault(x => x.Id == student.StudentId);
                     var StudentName = singleOrDefault.Name;
@@ -121,13 +136,13 @@ namespace Student_attendance_management_system.Controllers
                             TotalLeave = totalLeave,
                             Percent = parcent,
                             Mark = mark,
-                            Name=StudentName
+                            Name = StudentName
 
 
 
 
                         });
-                   
+
                     totalPresent = 0;
                     totalAbsent = 0;
                     totalLeave = 0;
@@ -151,7 +166,52 @@ namespace Student_attendance_management_system.Controllers
             if (@default != null)
                 ViewBag.CourseName = @default.Name;
 
+
+
+
+
+
+
             return View(finalAttendanceReports);
+        }
+
+
+
+        public ActionResult DetailsAttendanceForADay()
+        {
+
+            var semesters = db.Semesters.ToList();
+
+
+            @ViewBag.SemesterId = new SelectList(semesters, "Id", "Name");
+            return View();
+        }
+
+        public ActionResult SingleDayAttendance(SingleDayAttendanceViewModel singleDayAttendanceViewModel)
+        {
+            var Userid = User.Identity.GetUserId();
+
+            var attendance = db.Attendances.Include("Course").Include("Student").Include("Status").Include("Semester").Where(x => x.Batch == singleDayAttendanceViewModel.Batch
+                                                       && x.SemesterId == singleDayAttendanceViewModel.SemesterId
+                                                       && x.CourseId == singleDayAttendanceViewModel.CourseId
+                                                       && x.UserId == Userid
+                                                       && x.Date == singleDayAttendanceViewModel.Date
+                ).ToList();
+
+
+            @ViewBag.Date = singleDayAttendanceViewModel.Date;
+
+            @ViewBag.SemesterName =
+                db.Semesters.SingleOrDefault(x => x.Id == singleDayAttendanceViewModel.SemesterId).Name;
+
+            @ViewBag.Batch = singleDayAttendanceViewModel.Batch;
+
+            @ViewBag.TeacherName = db.Users.SingleOrDefault(x => x.Id == Userid).Name;
+
+            @ViewBag.CourseName = db.Courses.SingleOrDefault(x => x.Id == singleDayAttendanceViewModel.CourseId).Name;
+
+            return View(attendance);
         }
     }
 }
+
