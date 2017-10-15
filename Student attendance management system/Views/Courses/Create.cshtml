@@ -57,3 +57,38 @@
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }
+
+<script type="text/javascript">
+
+    $(function () {
+        $('#Date').datetimepicker({ format: "DD/MM/YYYY" });
+    });
+
+
+    $(document).ready(function () {
+
+        $("#SemesterId").change(function () {
+
+            var SemesterId = $(this).val();
+
+            $.ajax({
+
+                type: "Post",
+                url: "/CourseAssignToTeachers/GetAllCourses?SemesterId=" + SemesterId,
+                contentType:"html",
+                success :function (response) {
+
+                    $("#CourseId").empty();
+                    $("#CourseId").append(response);
+
+                }
+
+
+
+            });
+        });
+    });
+
+
+
+</script>

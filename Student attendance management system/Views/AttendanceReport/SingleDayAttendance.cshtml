@@ -28,7 +28,7 @@
             @Html.DisplayNameFor(model => model.Student.StudentId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status.Name)
+            @Html.DisplayName("Status")
         </th>
       
      
@@ -41,8 +41,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.Student.StudentId)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status.Name)
+        <td >
+            @Html.DisplayFor(modelItem => item.Status.Name, new { id = "status" })
         </td>
     
        
@@ -51,3 +51,18 @@
 }
 
 </table>
+
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+
+        if ($('#Name').value=='Absent'){
+            $('table td').css('color', 'red');
+        }
+        
+
+    });
+</script>

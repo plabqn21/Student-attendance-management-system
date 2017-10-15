@@ -76,7 +76,7 @@ namespace Student_attendance_management_system.Controllers
             var assignedCourse = db.CourseAssignToTeachers.Where(x => x.UserId == currentUser);
 
 
-            var CourseList = assignedCourse.Select(x => x.Course).Where(x => x.SemesterId == SemesterId).ToList();
+            var CourseList = assignedCourse.Select(x => x.Course).Where(x => x.SemesterId == SemesterId);
 
             ViewBag.SendIdToPartial = new SelectList(CourseList, "Id", "Name");
             return PartialView("CascadingOptionPartial");
@@ -160,7 +160,7 @@ namespace Student_attendance_management_system.Controllers
             var listAttendance = new List<Attendance>();
             foreach (var attendance in receive)
             {
-                var singleOrDefault = db.Students.SingleOrDefault(x => x.StudentId == attendance.StudentId && x.SemesterId == attendance.SemesterId);
+                var singleOrDefault = db.Students.FirstOrDefault(x => x.StudentId == attendance.StudentId && x.SemesterId == attendance.SemesterId);
                 if (singleOrDefault != null)
                     listAttendance.Add(new Attendance()
                     {
