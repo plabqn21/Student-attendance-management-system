@@ -1,5 +1,7 @@
 ﻿@model Student_attendance_management_system.Models.ViewModel.FinalAttendanceViewModel
 
+<link href="~/Content/W3CSS/w3CssPlugIn.css" rel="stylesheet" />
+<link href="~/Content/W3CSS/w3CssPlugInFont.css" rel="stylesheet" />
 @using (Html.BeginForm("FinalAttendence", "Attendances", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -7,114 +9,120 @@
     <br/>
     <br/>
 
+  
 
-
-    <table class="table table-bordered">
-        <tr>
-            <th>
-                @Html.Label("Student Id")
-            </th>
-
-
-            <th>
-                @Html.Label("CourseCode")
-
-
-            </th>
-
-            <th>
-                @Html.Label("Batch")
-
-
-            </th>
-            <th>
-                @Html.Label("Semester")
-
-
-            </th>
-            <th>
-                @Html.Label("Date")
-
-
-            </th>
-
-            <th>
-                @Html.Label("Status")
-
-
-            </th>
-
-
-
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model.Students)
-        {
+    <div align="center">
+        <table border="1">
             <tr>
+                <th>
+                    @Html.Label("Student Id")
+                </th>
+                <th>
+                    @Html.Label("Name")
+                </th>
 
-                <td>
-                    @Html.TextBox("StudentId", (string)item.StudentId,new { @readonly="readonly" })
-                    
-
-                </td>
-
-
-                @Html.Hidden("Name", (string)item.Name)
-
-
-
-                <td>
-                    @Html.DropDownList("CourseId")
-                </td>
+                @*<th>
+                        @Html.Label("CourseCode")
 
 
-                @Html.Hidden("UserId", (string)ViewBag.UserId)
+                    </th>
+
+                    <th>
+                        @Html.Label("Batch")
+
+
+                    </th>
+                    <th>
+                        @Html.Label("Semester")
+
+
+                    </th>
+                    <th>
+                        @Html.Label("Date")
+
+
+                    </th>*@
+
+                <th>
+                    @Html.Label("Status")
+
+
+                </th>
 
 
 
+                <th></th>
+            </tr>
 
-                <td>
-                    @Html.TextBox("Batch", (string)ViewBag.Batch, new { @readonly = "readonly" })
-                </td>
-                <td>
-                    @Html.DropDownList("SemesterId")
-                </td>
+            @foreach (var item in Model.Students)
+        {
+                <tr>
+
+                    <td>
+                        @Html.TextBox("StudentId", (string)item.StudentId,new { @readonly="readonly" })
 
 
-                <td>
-                    @Html.TextBox("Date", (string)ViewBag.Date, new { @readonly = "readonly" })
+                    </td>
 
-                </td>
-
-                <td>
-                    @Html.DropDownList("StatusId", new List<SelectListItem>
+                    <td>
+                        @Html.TextBox("Name", (string)item.Name,new { @readonly = "readonly" })
+                    </td>
+                    <td>
+                        @Html.DropDownList("StatusId", new List<SelectListItem>
                     {
                         new SelectListItem {Text = "Present", Value = "1"},
                         new SelectListItem {Text = "Absent", Value = "2"},
-                        new SelectListItem {Text = "On Leave", Value = "3"}
+                       
                     })
-                </td>
+                    </td>
+
+                    <td class="td1">
+                        @Html.DropDownList("CourseId")
+                    </td>
+
+
+                    @Html.Hidden("UserId", (string)ViewBag.UserId)
 
 
 
-            </tr>
+
+                    <td class="td2">
+                        @Html.TextBox("Batch", (string)ViewBag.Batch, new { @readonly = "readonly" })
+                    </td>
+                    <td class="td3">
+                        @Html.DropDownList("SemesterId")
+                    </td>
+
+
+                    <td class="td4">
+                        @Html.TextBox("Date", (string)ViewBag.Date, new { @readonly = "readonly" })
+
+                    </td>
+
+
+
+                    
+
+                </tr>
         }
-       
-    </table>
-    
-    <table>
+            
+        </table>
+
+        <tr><input type="submit" value="Save" class="btn btn-primary btn-block" /></tr>
         
-        <tr>
-            <div class="form-group" align="right">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-lg btn-primary" />
-                </div>
-            </div>
-        </tr>
-    </table>
-   
-}
+
+            
+
+     
+
+    </div>}
+    <script>
 
 
-
+    $(document).ready(function () {
+        $(".td1").hide();
+        $(".td2").hide();
+        $(".td3").hide();
+        $(".td4").hide();
+    })
+    </script>
