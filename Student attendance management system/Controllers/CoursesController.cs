@@ -44,7 +44,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CourseCode,Name,SemesterId")] Course course)
+        public ActionResult Create([Bind(Include = "Id,CourseCode,Name,Credit,SemesterId")] Course course)
         {
 
 
@@ -80,7 +80,7 @@ namespace Student_attendance_management_system.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", course.SemesterId);
+            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name",course.SemesterId);
             return View(course);
         }
 
@@ -89,7 +89,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CourseCode,Name,SemesterId")] Course course)
+        public ActionResult Edit([Bind(Include = "Id,CourseCode,Name,Credit,SemesterId")] Course course)
         {
             if (ModelState.IsValid)
             {

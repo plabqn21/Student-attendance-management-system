@@ -21,7 +21,15 @@
             @Html.HiddenFor(model => model.Id)
 
             @Html.HiddenFor(model => model.CourseCode)
-
+            
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CourseCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CourseCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -30,6 +38,13 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.Credit, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Credit, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                    @Html.ValidationMessageFor(model => model.Credit, "", new { @class = "text-danger" })
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.SemesterId, "SemesterId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">

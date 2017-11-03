@@ -18,6 +18,8 @@ namespace Student_attendance_management_system.Models
         [Display(Name = "Course Name")]
         public string Name { get; set; }
 
+        [Display(Name = "Course Credit")]
+        public string Credit { get; set; }
         public Semester Semester { get; set; }
         [Required]
         [ForeignKey("Semester")]

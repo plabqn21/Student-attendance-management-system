@@ -2,17 +2,35 @@
 
 <link href="~/Content/W3CSS/w3CssPlugIn.css" rel="stylesheet" />
 <link href="~/Content/W3CSS/w3CssPlugInFont.css" rel="stylesheet" />
+
+<p align="center">
+    <img src="~/Content/Images/Universitylogo.png" width="80" height="80" />
+    <h4 align="center"><b>Department of Computer Science & Engineering</b></h4>
+    <h5 align="center">
+        Jagannath University , Dhaka
+    </h5>
+    <h6>
+<p align="center">Semester: @ViewBag.SemesterName</p>
+<p align="center">Batch: @ViewBag.Batch</p>
+<p align="center"> Date: @ViewBag.Date</p>
+
+</h6>
+</p>
+
+<p><h6> <p align="center">Course Teacher:  @ViewBag.TeacherName</p>
+<p align="center">Course Name:   @ViewBag.CourseName</p>
+</h6></p>
 @using (Html.BeginForm("FinalAttendence", "Attendances", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
 
-  
+
 
     <div align="center">
-        <table border="1">
+        <table border="1" style="width:30%">
             <tr>
                 <th>
                     @Html.Label("Student Id")
@@ -55,24 +73,24 @@
             </tr>
 
             @foreach (var item in Model.Students)
-        {
+            {
                 <tr>
 
                     <td>
-                        @Html.TextBox("StudentId", (string)item.StudentId,new { @readonly="readonly" })
+                        @Html.TextBox("StudentId", (string)item.StudentId, new { @readonly = "readonly" })
 
 
                     </td>
 
                     <td>
-                        @Html.TextBox("Name", (string)item.Name,new { @readonly = "readonly" })
+                        @Html.TextBox("Name", (string)item.Name, new { @readonly = "readonly" })
                     </td>
                     <td>
                         @Html.DropDownList("StatusId", new List<SelectListItem>
                     {
                         new SelectListItem {Text = "Present", Value = "1"},
                         new SelectListItem {Text = "Absent", Value = "2"},
-                       
+
                     })
                     </td>
 
@@ -101,22 +119,22 @@
 
 
 
-                    
+
 
                 </tr>
-        }
-            
+            }
+
         </table>
 
         <tr><input type="submit" value="Save" class="btn btn-primary btn-block" /></tr>
-        
 
-            
 
-     
+
+
+
 
     </div>}
-    <script>
+<script>
 
 
     $(document).ready(function () {
@@ -125,4 +143,7 @@
         $(".td3").hide();
         $(".td4").hide();
     })
-    </script>
+
+
+</script>
+

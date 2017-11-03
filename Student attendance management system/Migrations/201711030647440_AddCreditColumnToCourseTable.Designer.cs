@@ -7,13 +7,13 @@ namespace Student_attendance_management_system.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddBatchCorrected : IMigrationMetadata
+    public sealed partial class AddCreditColumnToCourseTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddBatchCorrected));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCreditColumnToCourseTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709191533530_AddBatchCorrected"; }
+            get { return "201711030647440_AddCreditColumnToCourseTable"; }
         }
         
         string IMigrationMetadata.Source

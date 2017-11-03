@@ -41,6 +41,8 @@ namespace Student_attendance_management_system.Controllers
             ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session");
             //ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name");
             //ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId");
+
+
             return View();
         }
 
@@ -114,6 +116,21 @@ namespace Student_attendance_management_system.Controllers
             finalAttendanceViewModel.Students = allStudents;
 
 
+            var singleOrDefault = db.Semesters.SingleOrDefault(x => x.Id == receiveData.SemesterId);
+            if (singleOrDefault != null)
+                @ViewBag.SemesterName =
+                    singleOrDefault.Name;
+
+            var userid = User.Identity.GetUserId();
+
+            var applicationUser = db.Users.SingleOrDefault(x => x.Id == userid);
+            if (applicationUser != null)
+                @ViewBag.TeacherName = applicationUser.Name;
+
+            var orDefault = db.Courses.SingleOrDefault(x => x.Id == receiveData.CourseId);
+            if (orDefault != null)
+                @ViewBag.CourseName = orDefault.Name;
+
             return View(finalAttendanceViewModel);
         }
 
@@ -127,7 +144,7 @@ namespace Student_attendance_management_system.Controllers
         {
 
 
-            List<ReceiveAttendanceListViewModel> receive = new List<ReceiveAttendanceListViewModel>();
+            var receive = new List<ReceiveAttendanceListViewModel>();
 
 
             var StudentId = formCollection["StudentId"].Split(',').ToArray();
@@ -190,8 +207,7 @@ namespace Student_attendance_management_system.Controllers
 
 
 
-
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Successful", "Attendances");
         }
         // GET: Attendances/Edit/5
         public ActionResult Edit(int? id)
@@ -269,6 +285,11 @@ namespace Student_attendance_management_system.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Successful()
+        {
+            return View();
         }
     }
 }

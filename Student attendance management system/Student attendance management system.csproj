@@ -284,9 +284,9 @@
     <Compile Include="Migrations\201709191522478_AddBatch.Designer.cs">
       <DependentUpon>201709191522478_AddBatch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709191533530_AddBatchCorrected.cs" />
-    <Compile Include="Migrations\201709191533530_AddBatchCorrected.Designer.cs">
-      <DependentUpon>201709191533530_AddBatchCorrected.cs</DependentUpon>
+    <Compile Include="Migrations\201711030647440_AddCreditColumnToCourseTable.cs" />
+    <Compile Include="Migrations\201711030647440_AddCreditColumnToCourseTable.Designer.cs">
+      <DependentUpon>201711030647440_AddCreditColumnToCourseTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -377,6 +377,7 @@
     <Content Include="Content\Images\17361761_751336645016974_8169877945821952807_n.jpg" />
     <Content Include="Content\Images\17434698_1253350521427330_8013427058473538164_o.jpg" />
     <Content Include="Content\Images\18194874_1855076051426270_801358040015136779_n.jpg" />
+    <Content Include="Content\Images\success.jpg" />
     <Content Include="Content\Images\Universitylogo.png" />
     <Content Include="Content\W3CSS\w3CssPlugIn.css" />
     <Content Include="Content\W3CSS\w3CssPlugInFont.css" />
@@ -568,6 +569,7 @@
     <Content Include="Views\AttendanceReport\Index.cshtml" />
     <Content Include="Views\AttendanceReport\DetailsAttendanceForADay.cshtml" />
     <Content Include="Views\AttendanceReport\SingleDayAttendance.cshtml" />
+    <Content Include="Views\Attendances\Successful.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -663,8 +665,8 @@
     <EmbeddedResource Include="Migrations\201709191522478_AddBatch.resx">
       <DependentUpon>201709191522478_AddBatch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709191533530_AddBatchCorrected.resx">
-      <DependentUpon>201709191533530_AddBatchCorrected.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711030647440_AddCreditColumnToCourseTable.resx">
+      <DependentUpon>201711030647440_AddCreditColumnToCourseTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
