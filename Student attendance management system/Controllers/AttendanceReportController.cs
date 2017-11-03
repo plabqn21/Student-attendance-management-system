@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using Student_attendance_management_system.Models;
 using Student_attendance_management_system.Models.ViewModel;
 using System.Collections.Generic;
@@ -102,7 +103,7 @@ namespace Student_attendance_management_system.Controllers
                     {
                         totalClass = (double)totalPresent + (double)totalAbsent + (double)totalLeave;
                     }
-                    double parcent = (totalPresent / totalClass) * 100.00;
+                    double parcent = Math.Round((totalPresent / totalClass) * 100.00, 2); 
                     double mark;
                     if (parcent < 60)
                     {

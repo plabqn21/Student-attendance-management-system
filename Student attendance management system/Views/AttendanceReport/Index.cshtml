@@ -39,9 +39,7 @@
         <th>
             @Html.DisplayName("Absent")
         </th>
-        <th>
-            @Html.DisplayName("Leave")
-        </th>
+       
         <th>
             @Html.DisplayName("Attendance in Percent")
         </th>
@@ -66,9 +64,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TotalAbsent)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalLeave)
-            </td>  <td>
+             <td>
                        @Html.DisplayFor(modelItem => item.Percent) %
                    </td>  <td>
                               @Html.DisplayFor(modelItem => item.Mark)
@@ -78,4 +74,11 @@
     }
 
 </table>
-
+<div align="right">
+    <button class="btn btn-primary" onclick="myFunction()">Print Report</button>
+</div>
+<script>
+function myFunction() {
+    window.print();
+}
+</script>
