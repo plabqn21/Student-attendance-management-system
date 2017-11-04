@@ -53,6 +53,32 @@ namespace Student_attendance_management_system.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AttendanceViewModel1 attendanceViewModel1)
         {
+
+            var Userid = User.Identity.GetUserId();
+
+              var attendance = db.Attendances.FirstOrDefault(x => x.Batch == attendanceViewModel1.Batch
+                                                       && x.SemesterId == attendanceViewModel1.SemesterId
+                                                       && x.CourseId == attendanceViewModel1.CourseId
+                                                       && x.UserId == Userid
+                                                       && x.Date == attendanceViewModel1.Date
+                );
+
+            if (attendance != null)
+            {
+                @ViewBag.AttendanceExist = "Already taken attendance for this date";
+
+                //ViewBag.UserId = new SelectList(db.Users, "Id", "Name", attendanceViewModel1.UserId);
+                ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", attendanceViewModel1.CourseId);
+                ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", attendanceViewModel1.SemesterId);
+                ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendanceViewModel1.Batch);
+                //ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", attendance.StatusId);
+                //ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId", attendance.StudentId);
+                return View(attendanceViewModel1);
+               
+
+            }
+
+            
             if (ModelState.IsValid)
             {
                 //db.Attendances.Add(attendance);
@@ -144,6 +170,9 @@ namespace Student_attendance_management_system.Controllers
         {
 
 
+          
+
+
             var receive = new List<ReceiveAttendanceListViewModel>();
 
 
@@ -156,6 +185,10 @@ namespace Student_attendance_management_system.Controllers
             var Date = formCollection["Date"].Split(',').ToArray();
             var StatusId = formCollection["StatusId"].Split(',').ToArray();
 
+
+
+
+            
 
 
             for (var i = 0; i < StudentId.Length; i++)
