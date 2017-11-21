@@ -302,6 +302,8 @@
     <Compile Include="Models\ViewModel\AccountViewModels.cs" />
     <Compile Include="Models\ViewModel\AttendanceReportViewModel.cs" />
     <Compile Include="Models\ViewModel\AttendanceViewModel1.cs" />
+    <Compile Include="Models\ViewModel\DetailsAttendanceParameterViewModel.cs" />
+    <Compile Include="Models\ViewModel\DetailsAttendanceShowViewModel.cs" />
     <Compile Include="Models\ViewModel\FinalAttendanceReport.cs" />
     <Compile Include="Models\ViewModel\FinalAttendanceViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
@@ -379,6 +381,7 @@
     <Content Include="Content\Images\18194874_1855076051426270_801358040015136779_n.jpg" />
     <Content Include="Content\Images\success.jpg" />
     <Content Include="Content\Images\Universitylogo.png" />
+    <Content Include="Content\Table Item Rotation\Table Item Rotation.css" />
     <Content Include="Content\W3CSS\w3CssPlugIn.css" />
     <Content Include="Content\W3CSS\w3CssPlugInFont.css" />
     <Content Include="favicon.ico" />
@@ -570,6 +573,8 @@
     <Content Include="Views\AttendanceReport\DetailsAttendanceForADay.cshtml" />
     <Content Include="Views\AttendanceReport\SingleDayAttendance.cshtml" />
     <Content Include="Views\Attendances\Successful.cshtml" />
+    <Content Include="Views\AttendanceReport\DetailsAttendanceParameterEntry.cshtml" />
+    <Content Include="Views\AttendanceReport\DetailsAttendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

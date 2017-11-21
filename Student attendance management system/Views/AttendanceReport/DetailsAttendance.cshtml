@@ -1,0 +1,89 @@
+﻿@using Student_attendance_management_system.Models.ViewModel
+@model  IEnumerable<IEnumerable<Student_attendance_management_system.Models.Attendance>>
+
+
+
+@{
+    ViewBag.Title = "DetailsAttendance";
+}
+
+<h2>DetailsAttendance</h2>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+
+
+
+<script>
+
+
+
+
+    @{
+        var dateWiseAttendanceList = new List<DetailsAttendanceShowViewModel>();
+        foreach (var a in Model)
+        {
+
+            foreach (var item in a)
+            {
+
+
+
+                dateWiseAttendanceList.Add(
+                    new DetailsAttendanceShowViewModel()
+                    {
+                        StudentId = item.StudentId,
+                        Status = item.Status.Name,
+                        Date = item.Date
+                    }
+                    );
+
+
+             
+            }
+        }
+    }
+
+    var result = pivot(data, ['subject'], ['day', 'treatment'], {});
+    
+</script>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayName("Student Id")
+        </th>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in dateWiseAttendanceList)
+    {
+
+       
+            <tr>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+
+            </tr>
+        
+    }
+</table>

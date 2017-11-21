@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Student_attendance_management_system.Models;
 using Student_attendance_management_system.Models.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -103,7 +103,7 @@ namespace Student_attendance_management_system.Controllers
                     {
                         totalClass = (double)totalPresent + (double)totalAbsent + (double)totalLeave;
                     }
-                    double parcent = Math.Round((totalPresent / totalClass) * 100.00, 2); 
+                    double parcent = Math.Round((totalPresent / totalClass) * 100.00, 2);
                     double mark;
                     if (parcent < 60)
                     {
@@ -215,6 +215,149 @@ namespace Student_attendance_management_system.Controllers
 
             return View(attendance);
         }
+
+
+
+        //public ActionResult DetailsAttendanceParameterEntry()
+        //{
+        //    var semesters = db.Semesters.ToList();
+
+
+        //    @ViewBag.SemesterId = new SelectList(semesters, "Id", "Name");
+
+        //    return View();
+        //}
+
+
+
+
+        //        public ActionResult DetailsAttendance(DetailsAttendanceParameterViewModel detailsAttendanceParameterViewModel)
+        //        {
+
+        //            var userid = User.Identity.GetUserId();
+
+        //            var attendanceList = db.Attendances.Include("Course").Include("Student").Include("Status").Include("Semester").Where(x => x.Batch == detailsAttendanceParameterViewModel.Batch
+        //                                                       && x.SemesterId == detailsAttendanceParameterViewModel.SemesterId
+        //                                                       && x.CourseId == detailsAttendanceParameterViewModel.CourseId
+        //                                                       && x.UserId == userid
+
+        //                ).ToList();
+
+
+
+        //            @ViewBag.SemesterName =
+        //                db.Semesters.SingleOrDefault(x => x.Id == detailsAttendanceParameterViewModel.SemesterId).Name;
+
+        //            @ViewBag.Batch = detailsAttendanceParameterViewModel.Batch;
+
+        //            @ViewBag.TeacherName = db.Users.SingleOrDefault(x => x.Id == userid).Name;
+
+        //            @ViewBag.CourseName = db.Courses.SingleOrDefault(x => x.Id == detailsAttendanceParameterViewModel.CourseId).Name;
+
+
+
+        //            var allDatesList = attendanceList.Select(x => x.Date).Distinct();
+
+        //            var dateWiseAttendanceList = new List<List<Attendance>>();
+        //            foreach (var date in allDatesList)
+        //            {
+
+
+        //                var currentDateAttendance =
+        //                    db.Attendances.Include("Course")
+        //                        .Include("Student")
+        //                        .Include("Status")
+        //                        .Include("Semester")
+        //                        .Where(x => x.Batch == detailsAttendanceParameterViewModel.Batch
+        //                                    && x.SemesterId == detailsAttendanceParameterViewModel.SemesterId
+        //                                    && x.CourseId == detailsAttendanceParameterViewModel.CourseId
+        //                                    && x.UserId == userid
+        //                                    && x.Date == date
+        //                        ).ToList();
+        //                dateWiseAttendanceList.Add(currentDateAttendance);
+
+        //            }
+
+
+
+        ////            SqlDataReader reader;
+
+        ////            string cs = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        ////            using (var con = new SqlConnection(cs))
+        ////            {
+
+
+        ////                var cmd = @"
+        ////
+        ////                      SELECT DISTINCT StudentId INTO #Dates
+        ////                      FROM Attendances where SemesterId=1 and UserId='e6abfb90-a03c-4412-8a98-58f8871f3dea' and CourseId=6 and Batch='4th'
+        ////                      ORDER BY StudentId 
+        ////
+        ////
+        ////                      DECLARE @cols NVARCHAR(4000)
+        ////                      SELECT  @cols = COALESCE(@cols + ',[' + CONVERT(varchar, StudentId, 106)
+        ////	      			+ ']','[' + CONVERT(varchar, StudentId, 106) + ']')
+        ////                     FROM    #Dates
+        ////                     ORDER BY StudentId
+        ////
+        ////                     DECLARE @qry NVARCHAR(4000)
+        ////                     SET @qry =
+        ////                     'SELECT * FROM
+        ////                     (SELECT StudentId, StatusId , Date
+        ////                     FROM Attendances)emp
+        ////                     PIVOT (MAX(StatusId) FOR StudentId IN (' + @cols + ')) AS stat'
+        ////
+        ////                     EXEC(@qry)
+        ////
+        ////                     DROP TABLE #Dates  ";
+
+
+
+
+        ////                using (var command = new SqlCommand("", con))
+        ////                {
+
+
+
+
+        ////                    command.CommandText = cmd;
+        ////                    command.Parameters.AddWithValue("@SemesterId", detailsAttendanceParameterViewModel.SemesterId);
+        ////                    command.Parameters.AddWithValue("@UserId", userid);
+        ////                    command.Parameters.AddWithValue("@CourseId", detailsAttendanceParameterViewModel.CourseId);
+        ////                    command.Parameters.AddWithValue("@Batch", detailsAttendanceParameterViewModel.Batch);
+        ////                    con.Open();
+        ////                     reader = command.ExecuteReader();
+
+
+
+        ////                     while (reader.Read())
+        ////                {
+        ////                    student.Add(new Student()
+        ////                    {
+        ////                        ID = dr.GetInt32(dr.GetOrdinal("ID")),
+        ////                        Name = dr.GetString(dr.GetOrdinal("Name")),
+        ////                        DateOfBirth = dr.GetDateTime(dr.GetOrdinal("DateOfBirth"))
+        ////                    });
+
+
+
+
+        ////                }
+
+
+
+
+        ////            }
+
+
+        ////            var columns = new List<WebGridColumn>(reader..Count);
+
+
+
+        //            return View(dateWiseAttendanceList);
+        //        }
+
+        
     }
 }
 

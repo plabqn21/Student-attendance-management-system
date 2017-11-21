@@ -63,8 +63,30 @@
 
 
                             @Html.ActionLink("New Attendance", "Create", "Attendances")
-                            @Html.ActionLink("Daily Report ", "DetailsAttendanceForADay", "AttendanceReport")
-                            @Html.ActionLink("View Report", "SelectProperties", "AttendanceReport")
+                           
+
+
+
+
+
+                        </div>
+
+
+
+                    </li>
+                    <li class="w3-dropdown-hover">
+
+
+
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Reports<b class="caret"></b></a>
+
+
+                        <div class="w3-dropdown-content w3-border">
+
+
+                           
+                            @Html.ActionLink("Daily", "DetailsAttendanceForADay", "AttendanceReport")
+                            @Html.ActionLink("Final", "SelectProperties", "AttendanceReport")
 
 
 
