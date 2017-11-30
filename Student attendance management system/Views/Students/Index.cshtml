@@ -3,72 +3,78 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Content/DataTable/DataTableJS.js"></script>
+
+    <link href="~/Content/DataTable/DataTableCss.css" rel="stylesheet" />
+
 }
 
-<h2>Index</h2>
+<br/>
+<br/>
 
 <p>
-    @Html.ActionLink("Add New Student", "Create",null,new{@class="btn btn-primary"})
+    @Html.ActionLink("Add New Student", "Create", null, new { @class = "btn btn-primary" })
 </p>
 
-@using (Html.BeginForm("Index", "Students"))
+@*@using (Html.BeginForm("Index", "Students"))
 {
 
     <label class="label label-default">Search Student : </label><br />
     @Html.TextBox("StudentId", null, new { @class = "form-control", PlaceHolder = "ex:B120304021/4th)" })<br />
     <button type="submit" class="btn btn-info">Search</button>
-}
+}*@
 <br /><br />
+<table class="table" id="datatable">
+    <thead>
+        <tr>
 
-<table class="table">
-    <tr>
-       
-       
-        <th>
-            @Html.DisplayNameFor(model => model.StudentId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.Sessiontbl.Session)
-        </th> <th>
-            @Html.DisplayNameFor(model => model.Batch)
-        </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.Semester.Name)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Sessiontbl.Session)
-        </td>  
-        <td>
-            @Html.DisplayFor(modelItem => item.Batch)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Semester.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id },new{@class="btn btn-info"}) 
-           
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentId)
+            </th>
+            <th>
+                @Html.DisplayName("Batch")
+            </th>
 
+            <th>
+                @Html.DisplayName("Student Status")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Batch.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentType)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" })
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+    });
+</script>

@@ -94,6 +94,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li>@Html.ActionLink("View All", "Index", "SecrectCodes")</li>
                             </ul>
                         </li>
+                        
+                        
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-barcode"></i>
+                                <span>Batch</span>
+                            </a>
+                            <ul class="sub">
+                                <li>@Html.ActionLink("Add New", "Create", "Batches")</li>
+                                <li>@Html.ActionLink("View All", "Index", "Batches")</li>
+                            </ul>
+                        </li>
                         <li>
 
                             <a onclick="location.href='@Url.Action("ViewAllTeachers", "Admin")'">

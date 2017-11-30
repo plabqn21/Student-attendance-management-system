@@ -1,11 +1,12 @@
-﻿@model Student_attendance_management_system.Models.ViewModel.AttendanceViewModel1
+﻿@using System.Web.UI.WebControls
+@model Student_attendance_management_system.Models.ViewModel.SingleDayAttendanceViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "SelectProperties";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Select the properties bellow</h2>
+<h2>SelectProperties</h2>
 
 
 @using (Html.BeginForm())
@@ -13,55 +14,49 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-
+        <h4>AttendanceReportViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                <p style="color: red">@ViewBag.AttendanceExist </p>
+               
             </div>
         </div>
-
         <div class="form-group">
-            @Html.Label("Batch", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BatchId, "BatchId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-
-                @Html.DropDownListFor(a => a.BatchId, ViewBag.BatchId as SelectList, "---Select---", new { @class = "form-control" })
+                @Html.DropDownList("BatchId", null, "Select Batch", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BatchId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Semester", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SemesterId, "SemesterId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
-                @Html.DropDownListFor(a => a.SemesterId, ViewBag.SemesterId as SelectList, "---Select---", new { @class = "form-control" })
+                @Html.DropDownList("SemesterId", null, "Select Semester", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-
-
         <div class="form-group">
-            @Html.Label("Course", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CourseId, "CourseId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(a => a.CourseId, new SelectList(""), "---Select---", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.CourseId, new SelectList(""), "Select Course", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Load Attendance" class="btn btn-primary" />
+            </div>
         </div>
     </div>
-
 }
 
 
@@ -69,7 +64,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
 <script type="text/javascript">
 
     $(function () {
@@ -79,22 +73,22 @@
 
     $(document).ready(function () {
 
-        $("#SemesterId").change(function() {
+        $("#SemesterId").change(function () {
 
             var SemesterId = $(this).val();
 
             $.ajax({
-                    
+
                 type: "Post",
                 url: "/Attendances/GetAllCourses?SemesterId=" + SemesterId,
-                contentType:"html",
-                success :function (response) {
+                contentType: "html",
+                success: function (response) {
 
                     $("#CourseId").empty();
                     $("#CourseId").append(response);
 
                 }
-                
+
 
 
             });
@@ -104,4 +98,3 @@
 
 
 </script>
-

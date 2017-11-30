@@ -16,19 +16,14 @@ namespace Student_attendance_management_system.Models
         public string Name { get; set; }
 
         [Required]
-        [ForeignKey("Sessiontbl")]
+        [ForeignKey("Batch")]
 
-        public int SessiontblId { get; set; }
-        public Sessiontbl Sessiontbl { get; set; }
-
-        [Required]
-        [ForeignKey("Semester")]
-        public int SemesterId { get; set; }
-
-        public Semester Semester { get; set; }
+        public int BatchId { get; set; }
+        public Batch Batch { get; set; }
 
         [Required]
-        public string Batch { get; set; }
+        public string StudentType { get; set; }
+
 
     }
 }

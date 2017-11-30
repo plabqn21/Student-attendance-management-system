@@ -15,9 +15,12 @@ namespace Student_attendance_management_system.Models.ViewModel
         public string Date { get; set; }
 
 
-        [Required]
 
-        public string Batch { get; set; }
+        [Required]
+        [ForeignKey("Batch")]
+        public int BatchId { get; set; }
+
+        public Batch Batch { get; set; }
 
 
 

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Student_attendance_management_system.Models.ViewModel
 {
@@ -14,8 +10,10 @@ namespace Student_attendance_management_system.Models.ViewModel
         [Key]
         public int Id { get; set; }
         [Required]
+        [ForeignKey("Batch")]
+        public int BatchId { get; set; }
 
-        public string Batch { get; set; }
+        public Batch Batch { get; set; }
 
 
 

@@ -102,11 +102,13 @@
                     @Html.Hidden("UserId", (string)ViewBag.UserId)
 
 
-
-
                     <td class="td2">
-                        @Html.TextBox("Batch", (string)ViewBag.Batch, new { @readonly = "readonly" })
+                        @Html.DropDownList("BatchId")
                     </td>
+
+                    @*<td class="td2">
+                        @Html.TextBox("Batch", (string)ViewBag.Batch, new { @readonly = "readonly" })
+                    </td>*@
                     <td class="td3">
                         @Html.DropDownList("SemesterId")
                     </td>

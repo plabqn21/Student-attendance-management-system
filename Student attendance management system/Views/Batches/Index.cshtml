@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Student_attendance_management_system.Models.Batch>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div style="margin-left: 140px">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+    <br/>
+    <br/>
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayName("Batch Id")
+            </th>
+            <th>
+                @Html.DisplayName("Batch")
+            </th>
+            <th>
+                @Html.DisplayName("Session")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Session)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -59,10 +59,19 @@
     $(document).ready(function () {
 
 
-        if ($('#Name').value=='Absent'){
+        if ($('#status').value == "Absent") {
             $('table td').css('color', 'red');
         }
         
 
     });
+</script>
+
+<div align="right">
+    <button class="btn btn-primary" onclick="myFunction()">Print Report</button>
+</div>
+<script>
+    function myFunction() {
+        window.print();
+    }
 </script>

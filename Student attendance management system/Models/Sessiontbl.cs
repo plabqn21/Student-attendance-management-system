@@ -12,5 +12,6 @@ namespace Student_attendance_management_system.Models
         [MaxLength(40)]
         public string Session { get; set; }
 
+
     }
 }

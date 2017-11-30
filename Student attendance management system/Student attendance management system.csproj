@@ -163,6 +163,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AttendanceReportController.cs" />
     <Compile Include="Controllers\AttendancesController.cs" />
+    <Compile Include="Controllers\BatchesController.cs" />
     <Compile Include="Controllers\CourseAssignToTeachersController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -288,10 +289,35 @@
     <Compile Include="Migrations\201711030647440_AddCreditColumnToCourseTable.Designer.cs">
       <DependentUpon>201711030647440_AddCreditColumnToCourseTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711240657053_a.cs" />
+    <Compile Include="Migrations\201711240657053_a.Designer.cs">
+      <DependentUpon>201711240657053_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711240802550_AddBatchTable.cs" />
+    <Compile Include="Migrations\201711240802550_AddBatchTable.Designer.cs">
+      <DependentUpon>201711240802550_AddBatchTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711240832197_AddSessionToBatchTable.cs" />
+    <Compile Include="Migrations\201711240832197_AddSessionToBatchTable.Designer.cs">
+      <DependentUpon>201711240832197_AddSessionToBatchTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711240851325_ModifyStudentTable.cs" />
+    <Compile Include="Migrations\201711240851325_ModifyStudentTable.Designer.cs">
+      <DependentUpon>201711240851325_ModifyStudentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711241052119_AddStudentTypeToStudentTable.cs" />
+    <Compile Include="Migrations\201711241052119_AddStudentTypeToStudentTable.Designer.cs">
+      <DependentUpon>201711241052119_AddStudentTypeToStudentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711241741119_AddBatchIdToAttendanceTable.cs" />
+    <Compile Include="Migrations\201711241741119_AddBatchIdToAttendanceTable.Designer.cs">
+      <DependentUpon>201711241741119_AddBatchIdToAttendanceTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseAssignToTeacher.cs" />
     <Compile Include="Models\SecrectCode.cs" />
@@ -374,6 +400,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CustomBootstrapTheme.css" />
+    <Content Include="Content\DataTable\DataTableCss.css" />
+    <Content Include="Content\DataTable\DataTableJS.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\17264975_10155133460262052_2001033222423227303_n.jpg" />
     <Content Include="Content\Images\17361761_751336645016974_8169877945821952807_n.jpg" />
@@ -557,11 +585,6 @@
     <Content Include="Views\CourseAssignToTeachers\Details.cshtml" />
     <Content Include="Views\CourseAssignToTeachers\Edit.cshtml" />
     <Content Include="Views\CourseAssignToTeachers\Index.cshtml" />
-    <Content Include="Views\Students\Create.cshtml" />
-    <Content Include="Views\Students\Delete.cshtml" />
-    <Content Include="Views\Students\Details.cshtml" />
-    <Content Include="Views\Students\Edit.cshtml" />
-    <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Attendances\Create.cshtml" />
     <Content Include="Views\Attendances\Delete.cshtml" />
     <Content Include="Views\Attendances\Edit.cshtml" />
@@ -575,6 +598,17 @@
     <Content Include="Views\Attendances\Successful.cshtml" />
     <Content Include="Views\AttendanceReport\DetailsAttendanceParameterEntry.cshtml" />
     <Content Include="Views\AttendanceReport\DetailsAttendance.cshtml" />
+    <Content Include="Views\Batches\Create.cshtml" />
+    <Content Include="Views\Batches\Delete.cshtml" />
+    <Content Include="Views\Batches\Details.cshtml" />
+    <Content Include="Views\Batches\Edit.cshtml" />
+    <Content Include="Views\Batches\Index.cshtml" />
+    <Content Include="Views\Students\Create.cshtml" />
+    <Content Include="Views\Students\Delete.cshtml" />
+    <Content Include="Views\Students\Details.cshtml" />
+    <Content Include="Views\Students\Edit.cshtml" />
+    <Content Include="Views\Students\Index.cshtml" />
+    <Content Include="Views\Attendances\EditParameterEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -672,6 +706,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711030647440_AddCreditColumnToCourseTable.resx">
       <DependentUpon>201711030647440_AddCreditColumnToCourseTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711240657053_a.resx">
+      <DependentUpon>201711240657053_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711240802550_AddBatchTable.resx">
+      <DependentUpon>201711240802550_AddBatchTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711240832197_AddSessionToBatchTable.resx">
+      <DependentUpon>201711240832197_AddSessionToBatchTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711240851325_ModifyStudentTable.resx">
+      <DependentUpon>201711240851325_ModifyStudentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711241052119_AddStudentTypeToStudentTable.resx">
+      <DependentUpon>201711241052119_AddStudentTypeToStudentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711241741119_AddBatchIdToAttendanceTable.resx">
+      <DependentUpon>201711241741119_AddBatchIdToAttendanceTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

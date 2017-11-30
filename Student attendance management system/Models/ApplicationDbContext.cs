@@ -10,6 +10,7 @@ namespace Student_attendance_management_system.Models
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Sessiontbl> Sessions { get; set; }
+        public DbSet<Batch> Batches { get; set; }
         public DbSet<SecrectCode> SecrectCodes { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Semester> Semesters { get; set; }

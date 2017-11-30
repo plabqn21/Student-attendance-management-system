@@ -14,25 +14,41 @@ namespace Student_attendance_management_system.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var students = db.Students.Include(s => s.Semester).Include(s => s.Sessiontbl);
+            var students = db.Students.Include(s => s.Batch);
             return View(students.ToList());
         }
+
+
+
 
 
         [HttpPost]
         public ActionResult Index(String StudentId)
         {
-            if (StudentId != null)
-            {
-                var student = db.Students.Include(s => s.Semester).Include(s => s.Sessiontbl).Where(x => x.StudentId == StudentId || x.Batch == StudentId).ToList();
 
-                return View(student);
+            
+            if (StudentId != "")
+            {
+
+                var batch = db.Batches.FirstOrDefault(x => x.Name == StudentId);
+                if (batch != null)
+                {
+                    return View(db.Students.Where(x => x.BatchId == batch.Id).ToList());
+
+                }
+
+                else
+                {
+                    return View(db.Students.Where(x => x.StudentId == StudentId).ToList());
+                }
+
+
+                
             }
 
 
             return View(db.Students.ToList());
         }
-
 
         // GET: Students/Details/5
         public ActionResult Details(int? id)
@@ -52,8 +68,7 @@ namespace Student_attendance_management_system.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
-            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name");
-            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session");
+            ViewBag.BatchId = new SelectList(db.Batches, "Id", "Name");
             return View();
         }
 
@@ -62,27 +77,8 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,StudentId,Name,Batch,SemesterId,SessiontblId")] Student student)
+        public ActionResult Create([Bind(Include = "Id,StudentId,Name,BatchId,StudentType")] Student student)
         {
-
-            var alreadyAddedStudent = db.Students.SingleOrDefault(x => x
-                                                                       .SemesterId == student.SemesterId &&
-
-                                                                       x.StudentId == student.StudentId
-
-
-
-                );
-
-
-            if (alreadyAddedStudent != null)
-            {
-                ViewBag.Message = "Already Added";
-                ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", student.SemesterId);
-                ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", student.SessiontblId);
-                return View();
-            }
-
             if (ModelState.IsValid)
             {
                 db.Students.Add(student);
@@ -90,8 +86,7 @@ namespace Student_attendance_management_system.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", student.SemesterId);
-            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", student.SessiontblId);
+            ViewBag.BatchId = new SelectList(db.Batches, "Id", "Name", student.BatchId);
             return View(student);
         }
 
@@ -107,8 +102,7 @@ namespace Student_attendance_management_system.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", student.SemesterId);
-            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", student.SessiontblId);
+            ViewBag.BatchId = new SelectList(db.Batches, "Id", "Name", student.BatchId);
             return View(student);
         }
 
@@ -117,7 +111,7 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,StudentId,Name,Batch,SessiontblId,SemesterId")] Student student)
+        public ActionResult Edit([Bind(Include = "Id,StudentId,Name,BatchId,StudentType")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -125,8 +119,7 @@ namespace Student_attendance_management_system.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", student.SemesterId);
-            ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", student.SessiontblId);
+            ViewBag.BatchId = new SelectList(db.Batches, "Id", "Name", student.BatchId);
             return View(student);
         }
 

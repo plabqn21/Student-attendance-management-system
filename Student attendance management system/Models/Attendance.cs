@@ -12,15 +12,6 @@ namespace Student_attendance_management_system.Models
         [MaxLength(20)]
         public string Date { get; set; }
 
-
-        [Required]
-
-        public string Batch { get; set; }
-
-
-
-
-
         [Required]
         [ForeignKey("Semester")]
         public int SemesterId { get; set; }
@@ -53,7 +44,10 @@ namespace Student_attendance_management_system.Models
 
         public Status Status { get; set; }
 
+        [Required]
+        [ForeignKey("Batch")]
+        public int BatchId { get; set; }
 
-
+        public Batch Batch { get; set; }
     }
 }

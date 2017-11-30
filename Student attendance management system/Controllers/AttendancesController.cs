@@ -17,9 +17,51 @@ namespace Student_attendance_management_system.Controllers
         // GET: Attendances
         public ActionResult Index()
         {
-            var attendances = db.Attendances.Include(a => a.ApplicationUser).Include(a => a.Course).Include(a => a.Semester).Include(a => a.Status).Include(a => a.Student);
-            return View(attendances.ToList());
+
+
+
+
+            var selectedPropertiesForLoadAttendance = (SingleDayAttendanceViewModel)TempData["singleDayAttendanceViewModel"];
+            var teacherId = User.Identity.GetUserId();
+
+            var attendanceList = db.Attendances.Include(a => a.ApplicationUser).Include(a => a.Course).Include(a => a.Semester).Include(a => a.Status).Include(a => a.Student).Where(x => x.UserId == teacherId
+                                                           && x.BatchId == selectedPropertiesForLoadAttendance.BatchId
+                                                           &&
+                                                           x.SemesterId ==
+                                                           selectedPropertiesForLoadAttendance.SemesterId
+                                                           && x.Date == selectedPropertiesForLoadAttendance.Date
+                                                           && x.CourseId == selectedPropertiesForLoadAttendance.CourseId
+
+
+
+
+                );
+
+
+
+
+            TempData["singleDayAttendanceViewModel"] = selectedPropertiesForLoadAttendance;
+
+
+
+            //  var attendances = db.Attendances.Include(a => a.ApplicationUser).Include(a => a.Course).Include(a => a.Semester).Include(a => a.Status).Include(a => a.Student);
+            return View(attendanceList.ToList());
         }
+
+
+
+        public ActionResult GetAllCourses(int SemesterId)
+        {
+            var currentUser = User.Identity.GetUserId();
+            var assignedCourse = db.CourseAssignToTeachers.Where(x => x.UserId == currentUser);
+
+
+            var CourseList = assignedCourse.Select(x => x.Course).Where(x => x.SemesterId == SemesterId);
+
+            ViewBag.SendIdToPartial = new SelectList(CourseList, "Id", "Name");
+            return PartialView("CascadingOptionPartial");
+        }
+
 
         // GET: Attendances/Details/5
 
@@ -39,6 +81,7 @@ namespace Student_attendance_management_system.Controllers
             // ViewBag.CourseId = new SelectList(courses, "Id", "Name");
             ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name");
             ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session");
+            ViewBag.BatchId = new SelectList(db.Batches, "Id", "Name");
             //ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name");
             //ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId");
 
@@ -56,12 +99,12 @@ namespace Student_attendance_management_system.Controllers
 
             var Userid = User.Identity.GetUserId();
 
-              var attendance = db.Attendances.FirstOrDefault(x => x.Batch == attendanceViewModel1.Batch
-                                                       && x.SemesterId == attendanceViewModel1.SemesterId
-                                                       && x.CourseId == attendanceViewModel1.CourseId
-                                                       && x.UserId == Userid
-                                                       && x.Date == attendanceViewModel1.Date
-                );
+            var attendance = db.Attendances.FirstOrDefault(x => x.BatchId == attendanceViewModel1.BatchId
+                                                     && x.SemesterId == attendanceViewModel1.SemesterId
+                                                     && x.CourseId == attendanceViewModel1.CourseId
+                                                     && x.UserId == Userid
+                                                     && x.Date == attendanceViewModel1.Date
+              );
 
             if (attendance != null)
             {
@@ -71,14 +114,15 @@ namespace Student_attendance_management_system.Controllers
                 ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", attendanceViewModel1.CourseId);
                 ViewBag.SemesterId = new SelectList(db.Semesters, "Id", "Name", attendanceViewModel1.SemesterId);
                 ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendanceViewModel1.Batch);
+                ViewBag.BatchId = new SelectList(db.Batches, "Id", "Name");
                 //ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", attendance.StatusId);
                 //ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId", attendance.StudentId);
                 return View(attendanceViewModel1);
-               
+
 
             }
 
-            
+
             if (ModelState.IsValid)
             {
                 //db.Attendances.Add(attendance);
@@ -98,17 +142,6 @@ namespace Student_attendance_management_system.Controllers
         }
 
 
-        public ActionResult GetAllCourses(int SemesterId)
-        {
-            var currentUser = User.Identity.GetUserId();
-            var assignedCourse = db.CourseAssignToTeachers.Where(x => x.UserId == currentUser);
-
-
-            var CourseList = assignedCourse.Select(x => x.Course).Where(x => x.SemesterId == SemesterId);
-
-            ViewBag.SendIdToPartial = new SelectList(CourseList, "Id", "Name");
-            return PartialView("CascadingOptionPartial");
-        }
 
 
 
@@ -124,19 +157,20 @@ namespace Student_attendance_management_system.Controllers
 
             var course = db.Courses.Where(x => x.Id == receiveData.CourseId);
             var sesester = db.Semesters.Where(x => x.Id == receiveData.SemesterId);
-
+            var batch = db.Batches.Where(x => x.Id == receiveData.BatchId);
             var userId = User.Identity.GetUserId();
 
             ViewBag.CourseId = new SelectList(course, "Id", "Name");
             ViewBag.SemesterId = new SelectList(sesester, "Id", "Name");
+            ViewBag.BatchId = new SelectList(batch, "Id", "Name");
             ViewBag.UserId = (string)userId;
 
             ViewBag.Date = receiveData.Date;
-            ViewBag.Batch = receiveData.Batch;
+
 
             var allStudents =
                 db.Students.Where(
-                    x => x.SemesterId == receiveData.SemesterId && x.Batch == receiveData.Batch).ToList();
+                    x => x.BatchId == receiveData.BatchId && x.StudentType == "Active").ToList();
 
             var finalAttendanceViewModel = new FinalAttendanceViewModel();
             finalAttendanceViewModel.Students = allStudents;
@@ -170,7 +204,7 @@ namespace Student_attendance_management_system.Controllers
         {
 
 
-          
+
 
 
             var receive = new List<ReceiveAttendanceListViewModel>();
@@ -180,7 +214,7 @@ namespace Student_attendance_management_system.Controllers
             var Name = formCollection["Name"].Split(',').ToArray();
             var CourseId = formCollection["CourseId"].Split(',').ToArray();
             var UserId = formCollection["UserId"].Split(',').ToArray();
-            var Batch = formCollection["Batch"].Split(',').ToArray();
+            var BatchId = formCollection["BatchId"].Split(',').ToArray();
             var SemesterId = formCollection["SemesterId"].Split(',').ToArray();
             var Date = formCollection["Date"].Split(',').ToArray();
             var StatusId = formCollection["StatusId"].Split(',').ToArray();
@@ -188,7 +222,7 @@ namespace Student_attendance_management_system.Controllers
 
 
 
-            
+
 
 
             for (var i = 0; i < StudentId.Length; i++)
@@ -200,7 +234,7 @@ namespace Student_attendance_management_system.Controllers
                     CourseId = Convert.ToInt32(CourseId[i]),
 
                     UserId = UserId[i].ToString(),
-                    Batch = Batch[i],
+                    BatchId = Convert.ToInt32(BatchId[i]),
                     SemesterId = Convert.ToInt32(SemesterId[i]),
                     Date = Date[i].ToString(),
                     StatusId = Convert.ToInt32(StatusId[i])
@@ -210,12 +244,12 @@ namespace Student_attendance_management_system.Controllers
             var listAttendance = new List<Attendance>();
             foreach (var attendance in receive)
             {
-                var singleOrDefault = db.Students.FirstOrDefault(x => x.StudentId == attendance.StudentId && x.SemesterId == attendance.SemesterId);
+                var singleOrDefault = db.Students.FirstOrDefault(x => x.StudentId == attendance.StudentId && x.StudentType == "Active");
                 if (singleOrDefault != null)
                     listAttendance.Add(new Attendance()
                     {
                         Date = attendance.Date,
-                        Batch = attendance.Batch,
+                        BatchId = attendance.BatchId,
                         SemesterId = attendance.SemesterId,
                         UserId = attendance.UserId,
                         CourseId = attendance.CourseId,
@@ -242,7 +276,35 @@ namespace Student_attendance_management_system.Controllers
 
             return RedirectToAction("Successful", "Attendances");
         }
-        // GET: Attendances/Edit/5
+        //  GET: Attendances/Edit/5
+
+        [HttpGet]
+        public ActionResult EditParameterEntry()
+        {
+
+            var semesters = db.Semesters.ToList();
+            var currentUser = User.Identity.GetUserId();
+            var Batch = db.Batches.ToList();
+            var courseAssignToTeachers = db.CourseAssignToTeachers.Where(x => x.UserId == currentUser);
+            var assignedCoursesToTeacher = courseAssignToTeachers.Select(x => x.Course).ToList();
+            @ViewBag.SemesterId = new SelectList(semesters, "Id", "Name");
+            @ViewBag.CourseId = new SelectList(assignedCoursesToTeacher, "Id", "Name");
+            @ViewBag.BatchId = new SelectList(Batch, "Id", "Name");
+
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult EditParameterEntry(SingleDayAttendanceViewModel singleDayAttendanceViewModel)
+        {
+
+            TempData["singleDayAttendanceViewModel"] = singleDayAttendanceViewModel;
+
+            return RedirectToAction("Index");
+
+        }
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -260,6 +322,9 @@ namespace Student_attendance_management_system.Controllers
             ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendance.Batch);
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", attendance.StatusId);
             ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId", attendance.StudentId);
+            ViewBag.BatchId = new SelectList(db.Batches, "Id", "Name", attendance.BatchId);
+            var selectedPropertiesForLoadAttendance = (SingleDayAttendanceViewModel)TempData["singleDayAttendanceViewModel"];
+            TempData["singleDayAttendanceViewModel"] = selectedPropertiesForLoadAttendance;
             return View(attendance);
         }
 
@@ -268,12 +333,14 @@ namespace Student_attendance_management_system.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Date,Batch,SemesterId,UserId,CourseId,StudentId,StatusId")] Attendance attendance)
+        public ActionResult Edit([Bind(Include = "Id,Date,BatchId,SemesterId,UserId,CourseId,StudentId,StatusId")] Attendance attendance)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(attendance).State = EntityState.Modified;
                 db.SaveChanges();
+                var selectedPropertiesForLoadAttendance = (SingleDayAttendanceViewModel)TempData["singleDayAttendanceViewModel"];
+                TempData["singleDayAttendanceViewModel"] = selectedPropertiesForLoadAttendance;
                 return RedirectToAction("Index");
             }
             ViewBag.UserId = new SelectList(db.Users, "Id", "Name", attendance.UserId);
@@ -282,7 +349,8 @@ namespace Student_attendance_management_system.Controllers
             ViewBag.SessiontblId = new SelectList(db.Sessions, "Id", "Session", attendance.Batch);
             ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Name", attendance.StatusId);
             ViewBag.StudentId = new SelectList(db.Students, "Id", "StudentId", attendance.StudentId);
-            return View(attendance);
+            ViewBag.BatchId = new SelectList(db.Batches, "Id", "Name", attendance.BatchId);
+            return View();
         }
 
         // GET: Attendances/Delete/5

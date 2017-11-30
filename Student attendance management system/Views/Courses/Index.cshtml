@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
+    <script src="~/Content/DataTable/DataTableJS.js"></script>
+
+    <link href="~/Content/DataTable/DataTableCss.css" rel="stylesheet" />
 }
 <div style="margin-left: 140px">
     <h2>All Courses</h2>
@@ -10,12 +13,13 @@
     <p>
         @Html.ActionLink("Create New", "Create", null,new { @class = "btn btn-primary" })
     </p>
-    <table class="table">
+    <table class="table" id="datatable">
+        <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.CourseCode)
             </th>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -25,34 +29,40 @@
             <th>
                 @Html.DisplayNameFor(model => model.Semester.Name)
             </th>
-          
-           
+
+
             <th></th>
         </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseCode)
+                    </td>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CourseCode)
-                </td>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Credit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Semester.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" }) 
-                   
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
-        }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Credit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Semester.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-info" })
 
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').dataTable();
+    });
+</script>
