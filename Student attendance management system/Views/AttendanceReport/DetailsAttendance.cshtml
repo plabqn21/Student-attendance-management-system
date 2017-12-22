@@ -1,89 +1,295 @@
-﻿@using Student_attendance_management_system.Models.ViewModel
-@model  IEnumerable<IEnumerable<Student_attendance_management_system.Models.Attendance>>
-
-
+﻿@model Student_attendance_management_system.Models.ViewModel.DetailsAttendanceWithDateViewModel
 
 @{
     ViewBag.Title = "DetailsAttendance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DetailsAttendance</h2>
-<style>
-    table, th, td {
-        border: 1px solid black;
-    }
-</style>
+
+<div class="w3-container">
 
 
-
-
-<script>
-
-
-
-
-    @{
-        var dateWiseAttendanceList = new List<DetailsAttendanceShowViewModel>();
-        foreach (var a in Model)
-        {
-
-            foreach (var item in a)
-            {
-
-
-
-                dateWiseAttendanceList.Add(
-                    new DetailsAttendanceShowViewModel()
-                    {
-                        StudentId = item.StudentId,
-                        Status = item.Status.Name,
-                        Date = item.Date
-                    }
-                    );
-
-
-             
-            }
-        }
-    }
-
-    var result = pivot(data, ['subject'], ['day', 'treatment'], {});
-    
-</script>
-
-<table>
-    <tr>
-        <th>
-            @Html.DisplayName("Student Id")
-        </th>
-        <th>
-            @Html.DisplayName("Date")
-        </th>
-        <th>
-            @Html.DisplayName("Status")
-        </th>
-
-
-    </tr>
-
-    @foreach (var item in dateWiseAttendanceList)
-    {
-
+<div class="w3-responsive">
+    <table class="w3-table-all">
        
+        
+    
             <tr>
-
-
                 <td>
-                    @Html.DisplayFor(modelItem => item.StudentId)
+                    @Html.DisplayFor(modelItem => Model.Dates.a)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @Html.DisplayFor(modelItem => Model.Dates.b)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @Html.DisplayFor(modelItem => Model.Dates.c)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.d)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.e)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.f)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.g)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.h)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.i)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.j)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.k)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.l)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.m)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.n)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.o)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.p)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.q)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.r)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.s)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.t)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.u)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.v)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.w)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.x)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.y)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.z)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzzzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzzzzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzzzzzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzzzzzzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzzzzzzzzzz)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Dates.zzzzzzzzzzzzzzz)
                 </td>
 
             </tr>
         
-    }
-</table>
+        
+        
+        
+
+
+    </table>
+
+</div>
+    </div>
+
+
+            <div class="w3-container">
+
+
+                <div class="w3-responsive">
+                    <table class="w3-table-all">
+
+                        @foreach (var item in Model.finalattendanceList)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.a)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.b)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.c)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.d)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.e)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.f)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.g)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.h)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.i)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.j)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.k)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.l)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.m)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.n)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.o)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.p)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.q)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.r)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.s)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.t)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.u)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.v)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.w)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.x)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.y)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.z)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzzzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzzzzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzzzzzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzzzzzzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzzzzzzzzzz)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.zzzzzzzzzzzzzzz)
+                                </td>
+
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+
+
+            <script>
+
+                var myTable = $('#tableID');
+
+                myTable.style.border = "1px solid black";
+            </script>

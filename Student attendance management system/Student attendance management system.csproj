@@ -330,6 +330,7 @@
     <Compile Include="Models\ViewModel\AttendanceViewModel1.cs" />
     <Compile Include="Models\ViewModel\DetailsAttendanceParameterViewModel.cs" />
     <Compile Include="Models\ViewModel\DetailsAttendanceShowViewModel.cs" />
+    <Compile Include="Models\ViewModel\DetailsAttendanceWithDateViewModel.cs" />
     <Compile Include="Models\ViewModel\FinalAttendanceReport.cs" />
     <Compile Include="Models\ViewModel\FinalAttendanceViewModel.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
@@ -597,7 +598,6 @@
     <Content Include="Views\AttendanceReport\SingleDayAttendance.cshtml" />
     <Content Include="Views\Attendances\Successful.cshtml" />
     <Content Include="Views\AttendanceReport\DetailsAttendanceParameterEntry.cshtml" />
-    <Content Include="Views\AttendanceReport\DetailsAttendance.cshtml" />
     <Content Include="Views\Batches\Create.cshtml" />
     <Content Include="Views\Batches\Delete.cshtml" />
     <Content Include="Views\Batches\Details.cshtml" />
@@ -609,6 +609,7 @@
     <Content Include="Views\Students\Edit.cshtml" />
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Attendances\EditParameterEntry.cshtml" />
+    <Content Include="Views\AttendanceReport\DetailsAttendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -190,7 +190,7 @@ namespace Student_attendance_management_system.Controllers
             var orDefault = db.Courses.SingleOrDefault(x => x.Id == receiveData.CourseId);
             if (orDefault != null)
                 @ViewBag.CourseName = orDefault.Name;
-
+            @ViewBag.Batch = db.Batches.FirstOrDefault(x => x.Id == receiveData.BatchId).Name;
             return View(finalAttendanceViewModel);
         }
 
