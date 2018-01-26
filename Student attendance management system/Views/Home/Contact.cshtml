@@ -1,17 +1,55 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿<style>
+    
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    td {
+        border: 1px black solid;
+        padding: 5px;
+    }
+    .rotate {
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        width: 1.5em;
+    }
+    .rotate div {
+        -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
+        -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
+        -webkit-transform: rotate(-90.0deg);  /* Saf3.1+, Chrome */
+        filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */
+        -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+        margin-left: -10em;
+        margin-right: -10em;
+    }
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+</style>
+
+
+<table cellpadding="0" cellspacing="0" align="center">
+    <tr>
+        <td class='rotate' rowspan="4"><div>10 kilograms</div></td>
+        <td>B</td>
+        <td>C</td>
+        <td>D</td>
+        <td>E</td>
+    </tr>
+    <tr>
+        <td>G</td>
+        <td>H</td>
+        <td>I</td>
+        <td>J</td>
+    </tr>
+    <tr>
+        <td>L</td>
+        <td>M</td>
+        <td>N</td>
+        <td>O</td>
+    </tr>
+    <tr>
+        <td>Q</td>
+        <td>R</td>
+        <td>S</td>
+        <td>T</td>
+    </tr>
+
+    <tr>
+</table>

@@ -278,7 +278,7 @@ namespace Student_attendance_management_system.Controllers
 			@ViewBag.SemesterName =
 				db.Semesters.SingleOrDefault(x => x.Id == detailsAttendanceParameterViewModel.SemesterId).Name;
 
-			@ViewBag.Batch = detailsAttendanceParameterViewModel.Batch;
+            @ViewBag.Batch = db.Batches.FirstOrDefault(x => x.Id == detailsAttendanceParameterViewModel.BatchId).Name;
 
 			@ViewBag.TeacherName = db.Users.SingleOrDefault(x => x.Id == userid).Name;
 
